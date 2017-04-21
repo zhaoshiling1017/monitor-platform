@@ -43,7 +43,7 @@
                 <span class="seat-icon icon-left-triangle"></span>
                 <!--collapes-->
                 <ul class="amazed-collapse collapse">
-					#if($shiro.hasPermission("系统管理-用户管理"))
+					#if($shiro.hasPermission("系统管理-人员管理"))
                     <li>
                         <a href="$path//users/person" target="myiframe">人员管理</a>
                     </li>
