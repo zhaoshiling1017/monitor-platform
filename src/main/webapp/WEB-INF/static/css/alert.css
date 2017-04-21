@@ -1,0 +1,42 @@
+/*提示框样式*/
+.clear{overflow:hidden;clear:both;}
+.left{float:left;}
+.right{float:right;}
+.alert-box{
+    z-index:20;
+    position: fixed;
+    top: 50%;
+    left:50%;
+    width:400px;
+    border:1px solid #ddd;
+    background-color: #fff;
+    text-align: center;
+    margin:-200px 0 0 -200px;
+}
+.alert-header{
+    background-color: #FF921E;
+    color: #fff;
+    padding:10px 5px;
+}
+.alert-body{
+    padding: 40px 0;
+}
+.alert-body [class^='icon-']{
+    font-size: 50px;
+}
+.alert-body p{
+	font-weight: bold;
+    margin: 10px 0 20px 0;
+    fonts-size:12px;
+}
+.alert-box .icon-amazed{
+    color:#FF921E;
+}
+.mask{
+	width:100%;
+	height:100%;
+	position:fixed;
+	left:0;
+	top:0;
+	background:rgba(255,255,255,0.5);
+}

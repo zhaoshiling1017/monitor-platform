@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>角色管理</title>
+    #parse('common/path-css.vm')
+    <script src="$path/static/js/jquery.min.js" type="text/javascript"></script>
+    <script src="$path/static/js/main.js" type="text/javascript"></script>
+    <script src="$path/static/js/index.js" type="text/javascript"></script>
+    <script src="$path/static/js/alert.js" type="text/javascript"></script>
+	<!-- jqgrid -->
+    <script src="$path/static/js/jqgrid/grid.locale-cn.js" type="text/javascript"></script>
+    <script src="$path/static/js/jqgrid/jquery.jqGrid.min.js" type="text/javascript"></script>
+    <script src="$path/static/js/jqgrid/table-jqgrid.js" type="text/javascript"></script>
+    <!-- json-serializeObject -->
+    <script src="$path/static/js/json/json-serializeObject.js" type="text/javascript"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="panel">
+            <div class="panel-head">
+                <h4>角色管理</h4>
+            </div>
+            <div class="panel-body">
+				<form class="control-condition" id="roleForm">
+                    <div class="btn-group">
+                    	 #if($shiro.hasPermission("角色管理-新增"))
+                        <a href="$path/permissions/addRole" class="btn-icon danger">
+                            <i class="icon-cross"></i>
+                            <span>新增</span>
+                        </a>
+                        #end
+                        <a href="javascript:void(0);" class="btn-icon">
+                            <i class="icon-refresh"></i>
+                            <span>刷新</span>
+                        </a>
+                    </div>
+                    <div class="clear"></div>
+                </form>
+                <!-- checkbox table -->
+                <table  id="roleTable" class="table table-bordered"></table>
+                <div id="page"></div>
+            </div>
+        </div>
+    </div>
+<script>
+$(function () {
+	tableInit();
+});
+
+function tableInit(){
+	$("#roleTable").jqGrid({
+        url:"$path/permissions/roleData",
+        datatype:"json", 
+        mtype:"post",
+        height:'auto',
+        autowidth:true,	
+		postData: {
+			search : JSON.stringify($('#roleForm').serializeObject())
+		},
+        colNames:['角色名称', '角色描述', '已配人员',"","","操作"],
+        colModel:[
+            {name:'roleName', width:'15%'},
+            {name:'comment', width:'15%'},
+            {name:'userNames', width:'10%'},
+            {name:'roleId', width:'10%',hidden:true},
+            {name:'isDeleted', width:'10%',hidden:true},
+            {name:'', width:'10%',formatter: function(cellvalue,options,rowObject){ 
+					var str = '';
+					if($shiro.hasPermission("角色管理-人员")){
+            			str = '</span><a href="$path/permissions/rolePerson/' + rowObject.roleId + '" target="myiframe">人员</a>';
+            		}
+            		str += '<span class="separate"> | </span>';
+            		if($shiro.hasPermission("角色管理-权限配置")){
+						str += '</span><a '+ (rowObject.isDeleted == 0 ? 'href="$path/permissions/editRole/' + rowObject.roleId +'" target="myiframe"' : 'class="disabled" href="javascript:;"') +'>权限配置</a>';
+            		}
+            		str += '<span class="separate"> | </span>';
+            		if($shiro.hasPermission("角色管理-停用")){
+						str += '<a class="stop" href="javascript:;" onclick="roleStatus('+ rowObject.roleId + (rowObject.isDeleted == 0 ? ',1)">停用</a>' : ',0)">启用</a>');
+            		}
+					//str = '</span><a href="$path/permissions/rolePerson/' + rowObject.roleId + '" target="myiframe">人员</a>';
+					//str += '<span class="separate"> | </span>';
+					////str += '</span><a href="$path/permissions/editRole/' + rowObject.roleId + '" target="myiframe">权限配置</a>';
+					//str += '</span><a '+ (rowObject.isDeleted == 0 ? 'href="$path/permissions/editRole/' + rowObject.roleId +'" target="myiframe"' : 'class="disabled" href="javascript:;"') +'>权限配置</a>';
+					
+					//str += '<span class="separate"> | </span>';
+					//str += '<a class="stop" href="javascript:;" onclick="roleStatus('+ rowObject.roleId + (rowObject.isDeleted == 0 ? ',1)">停用</a>' : ',0)">启用</a>');
+					return str;
+            	}
+            },
+        ],
+        viewrecords: true,//是否在浏览导航栏显示记录总数
+        rowNum:10,//每页显示记录数
+        pager:$('#page'),
+		jsonReader:{
+            page: "page",
+            total: "pages",
+            records: "count",
+            root: "results",
+            repeatitems: false,
+            id: "roleId"
+        },
+        gridComplete:function(){
+        	resize();
+			$("#roleTable tr td[aria-describedby $= 'isDeleted']").each(function(){
+        		var isDeleted = $(this).text();
+        		isDeleted == 1 ? $(this).parent().addClass("disabled") : $(this).parent().removeClass("disabled");
+			})
+        }
+    });
+}
+
+function getTableData() { 
+	$("#roleTable").jqGrid('setGridParam',{
+    	postData: { 
+			search : JSON.stringify($('#roleForm').serializeObject())
+		}
+	}).trigger('reloadGrid'); 
+}
+
+function roleStatus(roleId, isDeleted){
+	jQuery.ajax({
+	   async: false,
+       type: "post",
+       url: "$path/permissions/roleStatus",
+       data: {"roleId":roleId, "isDeleted":isDeleted},
+       dataType: "json",
+       error: function (request) {
+       		initAlert(0,"网络错误");   
+       },
+       success: function (data) {
+			//alert(data.result);
+			var tdisDeleted = $("#"+roleId).find("[aria-describedby $= 'isDeleted']");
+			var edit = $("#"+roleId).find(".edit");
+			var stop = $("#"+roleId).find(".stop");
+			if(tdisDeleted.text() == '0'){
+				$("#"+roleId).addClass("disabled");
+				stop.attr("onclick","userStatus("+ roleId +","+ 1 +")").text("启用");
+				edit.attr("onclick","").addClass("disabled");
+			}else{
+				$("#"+roleId).removeClass("disabled");
+				stop.attr("onclick","userStatus("+ roleId +","+ 0 +")").text("停用");
+				edit.attr("onclick","editUser("+ roleId +")").removeClass("disabled");
+			}
+			tdisDeleted.text(isDeleted);
+			getTableData();       		
+       	}
+	});
+}
+</script>
+</body>
+</html>

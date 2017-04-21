@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.ducetech.app.dao.PermissionDAO">
+	
+	<resultMap type="com.ducetech.app.model.Permission" id="permissionMap">
+		<id column="permission_id" property="permissionId"/>
+    	<result column="name" property="name"/>
+    	<result column="comment" property="comment"/>
+    	<result column="permission_str" property="permissionStr"/>
+    	<result column="parent_permission_id" property="parentPermissionId"/>
+    	<result column="parent_permission_name" property="parentPermissionName"/>
+    	<result column="creator_id" property="creatorId"/>
+    	<result column="created_at" property="createdAt"/>
+		<result column="is_deleted" property="isDeleted"/>
+	</resultMap>
+	
+	<!-- 菜单权限通用查询  -->
+	<select id="selectPermission" parameterType="com.ducetech.app.model.Permission" resultMap="permissionMap">
+		select * from permission where 1=1 
+		<if test="permissionStr!=null and permissionStr!=''">
+			and permission_str=#{permissionStr}
+		</if>
+		<if test="name!=null and name!=''">
+			and name=#{name}
+		</if>
+	</select>
+		
+	<!-- 通过角色ID获取拥有的菜单权限  -->
+	<select id="selectPermissionsByRoleId" resultMap="permissionMap"> 
+		select * from permission where permission_id in(select permission_id from role_permission where role_id=#{roleId}) 
+	</select>
+	
+	<!-- 通过ID获取菜单权限  -->
+	<select id="selectPermissionById" resultMap="permissionMap">
+		select * from permission where permission_id=#{permissionId}
+	</select>
+	
+	<!-- 新增菜单权限  -->
+	<insert id="insertPermission" parameterType="com.ducetech.app.model.Permission">
+		insert into permission(permission_id,name,permission_str,parent_permission_id,parent_permission_name,comment,is_deleted)
+		values(#{permissionId},#{name},#{permissionStr},#{parentPermissionId},#{parentPermissionName},#{comment},#{isDeleted})
+	</insert>
+	
+	<!-- 删除菜单权限  -->
+	<delete id="deletePermissionById">
+		delete from permission where permission_id = #{permissionId}
+	</delete>
+	
+	<!-- 更新菜单权限  -->
+	<update id="updatePermission" parameterType="com.ducetech.app.model.Permission">
+		update permission set name=#{name},permission_str=#{permissionStr},
+		parent_permission_id=#{parentPermissionId},parent_permission_name=#{parentPermissionName},
+		comment=#{comment},is_delete=#{isDelete} where permission_id=#{permissionId}	
+	</update>
+	
+	<!-- 通过人员ID获取菜单权限列表  -->
+	<select id="selectPermissionByUserId" resultMap="permissionMap">
+		select p.* from permission p,role_permission r
+		where p.permission_id=r.permission_id and r.role_id in(select role_id from user_role where user_id=#{userId}) 
+		group by p.permission_id
+	</select>
+	
+	<!-- 按角色ID删除原有菜单权限  -->
+	<delete id="deleteAllPermissionsByRoleId">
+		delete from role_permission where role_id = #{roleId}
+	</delete>
+	 
+	<!-- 按角色ID重新写入菜单权限  -->
+	<insert id="insertPermissionByRoleId">
+		insert into role_permission(role_id,permission_id) values(#{roleId},#{permissionId})
+	</insert>
+</mapper>

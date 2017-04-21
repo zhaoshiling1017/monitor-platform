@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录日志</title>
+    #parse('common/path-css.vm')
+    <script src="$path/static/js/jquery.min.js" type="text/javascript"></script>
+    <script src="$path/static/js/main.js" type="text/javascript"></script>
+    <script src="$path/static/js/index.js" type="text/javascript"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="panel">
+            <div class="panel-head">
+                <h4>人员管理<b class="join">-</b><b class="title-child">登录日志</b></h4>
+                <a href="$path/permissions/person" target="myiframe" class="btn btn-back">返回</a>
+            </div>
+            <div class="panel-body">
+                <div class="control-condition">
+                    <span class="info-group">
+                        <b>工号：</b><b>HC10120</b>
+                    </span>
+                    <span class="info-group">
+                        <b>账号：</b><b>admin</b>
+                    </span>
+                    <span class="info-group">
+                        <b>姓名：</b><b>陈硕峰</b>
+                    </span>
+                    <span class="info-group">
+                        <b>部门：</b><b>项目1部</b>
+                    </span>
+                </div>
+                <!-- checkbox table -->
+                <table class="table table-bordered align-left">
+                    <thead>
+                        <tr>
+                            <th>登录时间</th>
+                            <th>登录IP</th>
+                            <th>登录主机</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2016-09-31 13:12:34</td>
+                            <td>123.6.6..7</td>
+                            <td>XXXPC</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="table-footer">
+                    <ul class="list-pagination">
+                        <li>
+                            <a href="javascript:void(0);" class="icon-left-triangle"></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" class="active">1</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">2</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">3</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">4</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">...</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">26</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" class="icon-right-triangle"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

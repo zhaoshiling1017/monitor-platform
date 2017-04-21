@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 老版本写法 -->
+<!-- <toolbox>
+	application start
+	<tool>
+		<key>shiro</key >可选默认为 shiro
+		<scope>application</scope>
+		<class>com.ducetech.shiro.web.support.velocity.Permission</class>
+	</tool>
+	application end
+</toolbox>
+ -->
+<!-- 新版官方示例 -->
+<!-- <tools> 
+    <data type="boolean" key="VIEW_TOOLS_AVAILABLE" value="true"/>
+    <toolbox scope="request">
+        <tool class="org.apache.velocity.tools.view.CookieTool"/>
+        <tool class="org.apache.velocity.tools.view.ImportTool"/>
+        <tool class="org.apache.velocity.tools.view.IncludeTool"/>
+        <tool class="org.apache.velocity.tools.view.LinkTool"/>
+        <tool class="org.apache.velocity.tools.view.PagerTool"/>
+        <tool class="org.apache.velocity.tools.view.ParameterTool"/>
+        <tool class="org.apache.velocity.tools.view.ViewContextTool"/>
+        
+        This is not directly useable.
+        <tool class="org.apache.velocity.tools.view.AbstractSearchTool"/>
+       
+        move this to request scope
+        <tool class="org.apache.velocity.tools.generic.ResourceTool"/>
+    </toolbox>
+    <toolbox scope="session" createSession="false">
+        <tool class="org.apache.velocity.tools.view.BrowserTool"/>
+    </toolbox>
+</tools> -->
+<!-- 自定义velocity-tools -->
+<tools>
+    <toolbox scope="application">
+    	<!-- 引用类中通过注解定义了默认的key,所以在此处不定义key -->
+        <tool class="com.ducetech.framework.support.service.Permission"/>
+    </toolbox>
+</tools>

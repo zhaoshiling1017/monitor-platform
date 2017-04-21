@@ -1,0 +1,88 @@
+#set($path = ${rc.contextPath})
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link rel="stylesheet" href="$path/static/css/font.css">
+    <link rel="stylesheet" href="$path/static/css/sign.css">
+    <link rel="stylesheet" href="$path/static/css/alert.css">
+    <link rel="stylesheet" href="$path/static/css/bootstrap.css">
+    <script src="$path/static/js/jquery.min.js" type="application/javascript"></script>
+    <script src="$path/static/js/alert.js" type="application/javascript"></script>
+	<script>
+	$(function(){
+		//回车登录
+		$(document).keydown(function(e){
+			if(e.keyCode==13){
+			   submitLogin();
+			}
+		});
+		//登陆超时
+		if (window != top){
+			top.location.href = location.href + "?tag=sessionInvalid"; 
+			window.stop();
+		}
+	})
+	$(function(){
+		var tag = "$tag";
+		if ("sessionInvalid" == tag) {
+			initAlert(0,"登录超时，请重新登录！");
+			setTimeout(function(){
+				location.href = "$path/";
+			},2000)
+		}
+	});
+	</script>
+</head>
+<body>
+    <!-- <div class="header">
+        <<ul class="nav nav-zsj">
+            <li><a href="javascript:;" class="active">了解通号公司</a></li>
+            <li><a href="javascript:;">下载app</a></li>
+            <li><a href="javascript:;">帮助</a></li>
+        </ul>
+    </div> -->
+    <div class="wrapper">
+        <img class="img-top" src="static/img/DNA-top.png">
+        <img class="img-bottom" src="static/img/DNA-bottom.png">
+        <div class="content">
+        <form action="login" method="post" id="loginForm">
+            <span class="icon-brand icon icon-logo"></span>
+            <h2 class="brand">6号线受电弓状态及裂纹监控平台</h2>
+			<p style="color:red;"></p>
+			<p class="error" id="result">$!message</p>
+            <div class="icon-input">
+                <span class="icon-user"></span>
+                <input type="text"  name="username" placeholder="用户名" id="username">
+            </div>
+            <div class="icon-input">
+                <span class="icon-psw"></span>
+                <input type="password" name="password" placeholder="登录密码" id="password">
+            </div>
+            <button class="btn-login" type="button" onclick="submitLogin()">登录</button>
+        </form>
+        </div>
+        <div class="footer">管理系统由神州同正科技有限公司开发</div>
+    </div>
+<script>
+function submitLogin(){
+	var name = $("#username").val();
+	var pass = $("#password").val();
+	if($.trim(name)=='' && $.trim(pass)==''){
+		$("#result").text("请输入用户名和密码");
+		return;
+	}
+	if($.trim(name)=='' && !$.trim(pass)==''){
+		$("#result").text("请输入用户名");
+		return;
+	}
+	if(!$.trim(name)=='' && $.trim(pass)==''){
+		$("#result").text("请输入密码");
+		return;
+	}
+	$("#loginForm").submit();
+}
+</script>
+</body>
+</html>

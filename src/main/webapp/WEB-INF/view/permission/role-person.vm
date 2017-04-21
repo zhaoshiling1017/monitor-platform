@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>角色管理</title>
+    #parse('common/path-css.vm')
+    <script src="$path/static/js/jquery.min.js" type="text/javascript"></script>
+    <script src="$path/static/js/main.js" type="text/javascript"></script>
+    <script src="$path/static/js/index.js" type="text/javascript"></script>
+	<!-- jqgrid -->
+    <script src="$path/static/js/jqgrid/grid.locale-cn.js" type="text/javascript"></script>
+    <script src="$path/static/js/jqgrid/jquery.jqGrid.min.js" type="text/javascript"></script>
+    <script src="$path/static/js/jqgrid/table-jqgrid.js" type="text/javascript"></script>
+	<!-- json-serializeObject -->
+    <script src="$path/static/js/json/json-serializeObject.js" type="text/javascript"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="panel">
+            <div class="panel-head">
+                <h4>角色管理<b class="join">-</b><b class="title-child">人员</b></h4>
+                <a href="$path/permissions/role" target="myiframe" class="btn btn-back">返回</a>
+            </div>
+            <div class="panel-body">
+                <div class="control-condition">
+                    <span class="info-group">
+                        <b>角色名称：</b><b>$!role.roleName</b>
+                    </span>
+                    <span class="info-group">
+                        <b>角色描述：</b><b>$!role.comment</b>
+                    </span>
+                </div>
+				<form id="roleForm">
+					<input type="hidden" name="roleId" value="$!role.roleId">
+				</form>
+				<!-- checkbox table -->
+                <table  id="rolePersonTable" class="table table-bordered"></table>
+                <div id="page"></div>
+            </div>
+        </div>
+    </div>
+<script>
+$(function () {
+	tableInit();
+});
+
+function tableInit(){
+	$("#rolePersonTable").jqGrid({
+        url:"$path/permissions/rolePersonData",
+        datatype:"json", 
+        mtype:"post",
+        height:'auto',
+        autowidth:true,	
+		postData: {
+			search : JSON.stringify($('#roleForm').serializeObject())
+		},
+        colNames:['账号', '工号', '姓名', '性别', '联系电话', '邮箱', '所属部门'],
+        colModel:[
+                {name:'loginName', width:'15%'},
+                {name:'employeeCode', width:'15%'},
+                {name:'name', width:'10%'},
+                {name:'gender', width:'10%'},
+                {name:'phone', width:'10%'},
+                {name:'email', width:'10%'},
+                {name:'department.departmentName', width:'10%'},
+        ],
+        viewrecords: true,//是否在浏览导航栏显示记录总数
+        rowNum:10,//每页显示记录数
+        pager:$('#page'),
+		jsonReader:{
+            page: "page",
+            total: "pages",
+            records: "count",
+            root: "results",
+            repeatitems: false,
+            id: "roleId"
+        },
+        gridComplete:function(){
+        	resize();
+        }
+    });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+#set($path = ${rc.contextPath})
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>403</title>
+    <link href="$path/static/css/error.css" rel="stylesheet">
+</head>
+<body>
+<img class="error" src="$path/static/img/403.png"/>
+</body>
+</html>

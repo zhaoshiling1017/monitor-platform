@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.ducetech.app.dao.UserDAO">
+	<resultMap type="com.ducetech.app.model.User" id="userMap">
+		<id column="user_id" property="userId"/>
+    	<result column="login_name" property="loginName"/>
+    	<result column="password" property="password"/>
+    	<result column="secret_key" property="secretKey"/>
+    	<result column="employee_code" property="employeeCode"/>
+    	<result column="name" property="name"/>
+    	<result column="gender" property="gender"/>
+    	<result column="department_id" property="departmentId"/>
+    	<result column="phone" property="phone"/>
+    	<result column="email" property="email"/>
+    	<result column="creator_id" property="creatorId"/>
+    	<result column="created_at" property="createdAt"/>
+    	<result column="is_deleted" property="isDeleted"/>
+	</resultMap>
+	
+	<!-- 登录 -->
+	<select id="selectUserByLoginName" resultMap="userMap">
+		select user_id, login_name, password, secret_key, employee_code, name, gender, department_id, phone, email, creator_id, created_at, is_deleted from user where login_name=#{loginName}
+	</select>
+	
+	<!-- 获取某用户的全部菜单权限 -->
+	<select id="selectPermissionByUserId" resultType="String">
+		select permission_str from permission where permission.permission_id in(select 
+		role_permission.permission_id from role_permission where role_permission.role_id 
+		in (select user_role.role_id from user_role where user_role.user_id=#{userId}))
+	</select>
+	
+	<!-- 根据ID精确查找用户 -->
+	<select id="selectUserByUserId" resultMap="userMap">
+		select user_id, login_name, password, secret_key, employee_code, name, gender, department_id, phone, email, creator_id, created_at, is_deleted from user where user_id=#{userId}
+	</select>
+	
+	<!-- 对用户的通用查询  -->
+	<select id="selectUser" parameterType="com.ducetech.app.model.User" resultMap="userMap">
+		select user_id, login_name, password, secret_key, employee_code, name, gender, department_id, phone, email, creator_id, created_at, is_deleted from user where 1=1
+		<if test="loginName!=null and loginName!=''">
+			and login_name=#{loginName}
+		</if>
+		<if test="employeeCode!=null and employeeCode!=''">
+			and employee_code=#{employeeCode}
+		</if>
+		<if test="name!=null and name!=''">
+			and name like '%' #{name} '%'
+		</if>
+		<if test="email!=null and email!=''">
+			and email=#{email}
+		</if>
+		<if test="gender!=null and gender!=''">
+			and gender=#{gender}
+		</if>
+		<if test="departmentId!=null and departmentId!=''">
+			and department_id=#{departmentId}
+		</if>
+		<if test="phone!=null and phone!=''">
+			and phone=#{phone}
+		</if>
+		<if test="creatorId!=null and creatorId!=''">
+			and creator_id=#{creatorId}
+		</if>
+		<if test="createdAt!=null and createdAt!=''">
+			and created_at=#{createdAt}
+		</if>
+		<if test="isDeleted!=null and isDeleted!=''">
+			and is_deleted=#{isDeleted}
+		</if>
+	</select>
+	
+	<!-- 插入新用户 -->
+	<insert id="insertUser" useGeneratedKeys="true" keyProperty="userId">
+		insert into user (login_name,password,secret_key,employee_code,name,email,gender,phone,department_id,create_by_id,create_at)
+		values(#{loginName},#{password},#{secretKey},#{employeeCode},#{name},#{email},#{gender},#{phone},#{departmentId},#{createById},#{createAt})
+	</insert>
+	
+	<!-- 更新某用户信息 -->
+	<update id="updateUser" parameterType="com.ducetech.app.model.User">
+		update user 
+		<set>
+			<if test="loginName != null and loginName != ''">
+				login_name=#{loginName},
+			</if>
+			<if test="password != null and password != ''">
+				password=#{password},
+			</if>
+			<if test="employeeCode != null and employeeCode != ''">
+				employee_code=#{employeeCode},
+			</if>
+			<if test="name != null and name != ''">
+				name=#{name},
+			</if>
+			<if test="gender != null and gender != ''">
+				gender=#{gender},
+			</if>
+			<if test="email != null and email != ''">
+				email=#{email},
+			</if>
+			<if test="phone != null and phone != ''">
+				phone=#{phone},
+			</if>
+			<if test="departmentId != null and departmentId != ''">
+				department_id=#{departmentId},
+			</if>
+			<if test="creatorId!=null and creatorId!=''">
+				creator_id=#{creatorId},
+			</if>
+			<if test="createdAt!=null and createdAt!=''">
+				created_at=#{createdAt},
+			</if>
+			<if test="isDeleted!=null and isDeleted!=''">
+				is_deleted=#{isDeleted}
+			</if>
+		</set>
+		where user_id=#{userId}
+	</update>
+	
+	<!-- 通过角色ID获取人员  -->
+	<select id="selectUsersByRoleId" resultMap="userMap">
+		select user_id, login_name, password, secret_key, employee_code, name, gender, department_id, phone, email, creator_id, created_at, is_deleted from user where user_id in (select user_id from user_role where role_id=#{roleId})
+	</select>
+</mapper>

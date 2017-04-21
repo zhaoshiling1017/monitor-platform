@@ -1,0 +1,10 @@
+#set($path = ${rc.contextPath})
+
+<script src="$path/static/js/jquery.min.js" type="application/javascript"></script>
+<script src="$path/static/js/underscore-min.js" type="application/javascript"></script>
+<script src="$path/static/js/moment.min.js" type="application/javascript"></script>
+<script src="$path/static/js/clndr.min.js" type="application/javascript"></script>
+<script src="$path/static/js/index.js" type="application/javascript"></script>
+
+
+

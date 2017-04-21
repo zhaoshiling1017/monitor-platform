@@ -1,0 +1,117 @@
+#parse('common/path-css.vm')
+
+<!-- PAGE TITTLE -->
+<!--===================================================-->
+<div id="page-title">
+</div>
+<!--===================================================-->
+<!-- END OF PAGE TITLE -->
+
+<!-- PAGE CONTENT -->
+<!--===================================================-->
+<div id="page-content">
+    <div class="panel">
+        <div class="panel-heading">
+            <h3 class="panel-title">个人资料</h3>
+        </div>
+
+
+        <!--HORIZONTAL FORM-->
+        <!--===================================================-->
+
+        <form action="info" method="post" class="form-horizontal">
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="info-loginname">用户名</label>
+
+                    <div class="col-sm-2">
+                        <input type="text" name="loginName" id="info-loginname" class="form-control" value="$user.loginName" readonly>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="info-name">姓名</label>
+					<span style="color:red">*</span>
+              		<span id="warning-name" style="color:red;display:none"></span>
+                    <div class="col-sm-2">
+                        <input id="name" type="text" name="name" id="info-name" class="form-control" value="$!user.name">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="info-employeeid">工号</label>
+
+                    <div class="col-sm-2">
+                        <input type="text" name="employeeId" id="info-employeeid" class="form-control" value="$!user.employeeId" readonly>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="info-email">Email</label>
+
+                    <div class="col-sm-2">
+                        <input type="text" name="email" id="info-email" class="form-control" value="$user.email">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="info-gender">性别</label>
+
+                    <!--<div class="col-sm-2">
+                        <input type="text" name="gender" id="info-gender" class="form-control" value="$user.gender">
+                    </div>-->
+                    &emsp;<select name="gender" id="info-gender" style="width:50px">
+                    	#if($user.gender == "男")
+                    		<option value="1">男</option>
+                    		<option value="0">女</option>
+                    	#else
+                    		<option value="0">女</option>
+                    		<option value="1">男</option>
+                    	#end
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="info-phone">电话号码</label>
+
+                    <div class="col-sm-2">
+                        <input type="text" name="phone" id="info-phone" class="form-control" value="$user.phone">
+                    </div>
+                </div>
+               <input type="hidden" name="dpmtId" id="info-dpmtid" class="form-control" value="$user.dpmtId">
+               <input type="hidden" name="titleId" id="info-titleid" class="form-control" value="$user.titleId">
+            </div>
+            <div class="panel-footer text-right">
+                <button class="btn btn-info" type="submit" onclick="return verify();">确  认</button>
+            </div>
+            #if($msg == "success")
+            	<div style="width:10%;position:absolute;right:50px;top:0px" class="alert alert-warning fade in">
+					<button class="close" data-dismiss="alert"><span>&times;</span></button>
+					<strong style="color:black">修改成功!</strong>
+				</div>
+			#end
+        </form>
+
+        <!--===================================================-->
+        <!-- END OF HORIZONTAL FORM  -->
+
+    </div>
+</div>
+<!--===================================================-->
+<!-- END OF PAGE CONTENT -->
+
+
+#parse('common/path-js.vm')
+<script>
+function verify(){
+ var name = $("#name").val();
+	if($.trim(name)==""){
+  	$("#warning-name").html("&emsp;&emsp;请输入姓名");
+  	$("#warning-name").css("color","red");
+  	$("#warning-name").show();
+  	return false;
+	}else{
+  	$("#warning-name").hide();
+	}
+}
+</script>

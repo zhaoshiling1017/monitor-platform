@@ -1,0 +1,112 @@
+@charset "utf-8";
+/* CSS Document*/
+.parentFileBox {
+	width:auto;
+	height:auto;
+	overflow:hidden;
+	position:relative;
+	margin-top:5px;
+}
+.parentFileBox>.fileBoxUl {
+	position:relative;
+	width:100%;
+	height:auto;
+	overflow:hidden;
+	padding-bottom:5px;
+}
+.parentFileBox>.fileBoxUl>li {
+	float:left;
+	height:25px;
+	margin-right: 25px;
+	position:relative;
+}
+.parentFileBox>.fileBoxUl>li>.viewThumb {
+	position:absolute;
+	top:0;
+	left:0;
+	overflow:hidden;
+}
+.parentFileBox>.fileBoxUl>li>.viewThumb>img {
+	width:100%;
+	height:100%;
+}
+.parentFileBox>.fileBoxUl>li>.diyCancel {
+	line-height:16px;
+	border-radius:50%;
+	color:#ee162d;
+	text-align:center;
+	cursor:pointer;
+	position: absolute;
+	top: 3px;
+	right: 0;
+	margin-right: -18px;
+}
+.parentFileBox>.fileBoxUl>li>.diySuccess {
+	cursor:default;
+}
+.parentFileBox>.fileBoxUl>li>.diyFileName {
+	height:20px;
+	line-height:20px;
+	float:left;
+	font-size:12px;
+	font-weight:normal;
+	color:#777;
+}
+.parentFileBox>.fileBoxUl>li>.diyBar {
+	float:left;
+	position:relative ;
+	/*by lj*/
+	width: 100px;
+	height: 16px;
+	line-height: 16px;
+	display:none;
+	margin-left:5px;
+	border:1px solid #ccc;
+	z-index:3;
+}
+.parentFileBox>.fileBoxUl>li>.diyBar>.diyProgressText {
+	font-size:12px;
+	text-align:center;
+	color:#fff;
+	position:relative;
+	z-index:99;
+	height: 16px;
+	line-height: 16px;
+}
+.parentFileBox>.fileBoxUl>li>.diyBar>.diyProgress {
+	position:absolute;
+	left:0;
+	/*top:42%;*/
+	height:16px;
+	width:100%;
+	background-color:#ddd;
+	filter:alpha(opacity=90);
+	-moz-opacity:0.9;
+	opacity:0.9;
+	z-index:97;
+}
+.parentFileBox>.fileBoxUl>li>.diyBar>.diyProgress.fail {
+	 background: #b9b9b9;
+ }
+.parentFileBox>.fileBoxUl>li>.diyBar>.diyProgress.success {
+	background: red;
+}
+.parentFileBox>.diyButton {
+	width:100%;
+	/*margin-top:5px;*/
+	margin-bottom:5px;
+	height:20px;
+	line-height:20px;
+	/*text-align:center;*/
+}
+.parentFileBox>.diyButton>a {
+	padding:5px 10px 5px 10px;
+	background-color:#648EF1;
+	color:#FFF;
+	text-decoration:none;
+	/*border-radius:3px;*/
+}
+.avi_diy_bg,.txt_diy_bg,.doc_diy_bg,.zip_diy_bg,.csv_diy_bg,.xls_diy_bg,.mp3_diy_bg,.pdf_diy_bg,.rar_diy_bg {
+	background-position:center;
+	background-repeat:no-repeat;
+}
