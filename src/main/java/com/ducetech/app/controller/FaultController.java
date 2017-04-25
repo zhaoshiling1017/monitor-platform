@@ -21,4 +21,10 @@ public class FaultController extends BaseController {
     public String index(HttpServletRequest request) {
         return "fault/index";
     }
+
+    @RequestMapping(value = "/faults/show", method = RequestMethod.GET)
+    public String show(HttpServletRequest request) {
+        return "fault/show";
+    }
+
 }
