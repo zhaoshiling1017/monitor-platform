@@ -73,14 +73,6 @@ ul {
 .ui-jqgrid{
 	overflow:hidden;
 }
-.table tr th:last-child,
-.table tr td:last-child,
-.ui-jqgrid-htable tr td:last-child,
-.ui-jqgrid-htable tr th:last-child {
-    text-align: right;
-    padding-right: 10px;
-}
-
 .separate {
     color: #CCC;
 }
@@ -174,36 +166,6 @@ a:hover, a:focus, a:active {
 }
 
 /* button */
-.btn {
-    display: inline-block;
-    width: 80px;
-    height: 30px;
-    line-height: 30px;
-    text-align: center;
-    color: #FFF !important;
-    border: 0;
-    outline: 0;
-    padding: 0;
-}
-
-.btn-primary {
-    background-color: #3a90f7;
-}
-
-.btn-warn {
-    background-color: #ff9120;
-}
-
-.btn-cancel {
-    background-color: #989898;
-}
-
-.btn-back {
-    background-color: #3ea8f4;
-    width: 90px;
-    height: 36px;
-    line-height: 36px;
-}
 
 a.list-mani {
     padding: 5px 12px;
@@ -243,10 +205,6 @@ a.list-mani {
 
 .btn-icon.danger span {
     background-color: #FF944D;
-}
-
-.panel {
-
 }
 
 .panel-head {
@@ -459,118 +417,6 @@ a.btn-inform {
 .info li #dept{
 	color:#333;
 	margin-right:0;
-}
-/* chart */
-#myChart, #myChart1, #myChart2 {
-    float: left;
-}
-
-.legend {
-    float: left;
-    margin-top: 80px;
-    color: #666;
-}
-
-.legend-label {
-    font-style: normal;
-    color: #3B8FF6;
-    margin-left: 10px;
-}
-
-.legend > li {
-    padding: 5px;
-    overflow: hidden;
-    /*height: 15px;*/
-    /*line-height: 15px;*/
-}
-
-.color-bar {
-    float: left;
-    width: 40px;
-    height: 12px;
-    margin-right: 10px;
-}
-
-.color-bar.primary {
-    background-color: #3B8FF6;
-}
-
-.color-bar.minimum {
-    background-color: #FF921E;
-}
-
-.color-bar.maximum {
-    background-color: #7AC843;
-}
-
-.info-group {
-    padding: 5px 0;
-    margin-right: 20px;
-    display: inline-block;
-}
-
-.info-group * {
-    height: 30px;
-    line-height: 30px;
-}
-
-.disabled, a.disabled {
-    color: #CBCBCB;
-}
-a.disabled{
-	cursor:default;
-}
-.join {
-    padding: 0 3px;
-}
-
-.title-child {
-    color: #1F76DD;
-}
-
-.table-auth {
-    border: 1px solid #eee;
-}
-
-.table-auth td, .table-auth th {
-    padding: 0 10px;
-}
-
-.table-auth input[type='checkbox'] {
-    margin-right: 8px;
-}
-
-.indent {
-    text-indent: 2em;
-}
-
-.auth-list, .auth-list ul {
-    -webkit-margin-before: 0;
-    -webkit-margin-after: 0;
-    -webkit-margin-start: 0;
-    -webkit-margin-end: 0;
-    -webkit-padding-start: 0;
-}
-
-.auth-list li {
-    height: 36px;
-    line-height: 36px;
-}
-
-.form-inline.width-fixed input[type='text'],
-.form-inline.width-fixed textarea {
-    width: 400px;
-}
-
-.chart {
-    padding: 20px;
-    float:left;
-}
-.chart canvas,.chart ul{float:left;}
-
-/* dialog */
-.modal-lj .the-information-list label {
-    width: 95px;
 }
 
 /* about datetimepicker */

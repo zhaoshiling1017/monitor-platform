@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>角色管理</title>
+    <title>缺陷库</title>
     <link href="$path/static/css/font.css" rel="stylesheet">
     <link href="$path/static/css/style.css" rel="stylesheet">
     <link href="$path/static/css/bootstrap.css" rel="stylesheet">
@@ -29,10 +29,12 @@
         </div>
     </div>
     <div class="right defectRight">
-        <p class="heading">检测数据<a class="btn" href="javascript:;">查询</a></p>
+        <p class="heading">检测数据
+        	<a class="btn-search" href="javascript:;">查询</a>
+        </p>
         <div class="defect-container">
             <form class="control-condition" id="userForm">
-                <div class="form-inline">
+            	<div class="form-inline">
                     <label>列车号：</label>
                     <input type="text" name="">
                 </div>
@@ -40,12 +42,12 @@
                     <label>上传时间：</label>
                     <div class="input-group datetimepicker date-picker datetime">
                         <input type="text" id="timeon" name="beginTime">
-                        <span class="input-group-addon"><i class="icon icon-calendar-alt-stroke"></i></span>
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                     </div>
                     <span>至</span>
                     <div class="input-group datetimepicker date-picker datetime">
                         <input type="text" id="timeoff" name="finishTime">
-                        <span class="input-group-addon"><i class="icon icon-calendar-alt-stroke"></i></span>
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                     </div>
                 </div>
                 <div class="clear"></div>

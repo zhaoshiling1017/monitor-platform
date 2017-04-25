@@ -14,7 +14,10 @@ $(function() {
                 var str = cellvalue + "<span class='icon-search'></span>";
                 return str;
             }},
-            { label:'Ship Name', name: 'ShipName', width: 150 }
+            { label:'Ship Name', name: 'ShipName', width: 150 },
+            {label:"操作",name:'aa',width:150,formatter:function(){
+            	return '<a href="faults/show">详情</a>';
+            }}
         ],
         viewrecords: true,
         autowidth:true,
