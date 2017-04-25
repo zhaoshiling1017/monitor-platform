@@ -753,21 +753,6 @@ a.disabled{
     box-shadow: 0 6px 12px rgba(0,0,0,0.175);
     background-clip: padding-box;
 }
-
-/*.datetimepicker-dropdown-bottom-right:before {
-    top: -7px;
-    left: 6px;
-}
-
-[class*=" datetimepicker-dropdown"]:before {
-    content: '';
-    display: inline-block;
-    border-left: 7px solid transparent;
-    border-right: 7px solid transparent;
-    border-bottom: 7px solid #ccc;
-    border-bottom-color: rgba(0,0,0,0.2);
-    position: absolute;
-}*/
 .date-picker input[type='text'] {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -806,63 +791,23 @@ a.disabled{
 /* jqgrid */
 .table tbody .jqgfirstrow{height:0;}
 .ui-jqgrid-resize{display:none;}
-#page{height:40px;background:#f7f7f7;border-top:1px solid #eee;overflow:hidden;clear:both;}
+.page{height:40px;background:#f7f7f7;border-top:1px solid #eee;overflow:hidden;clear:both;}
 	#pg_page{width:380px;float:right;}
 		#pg_page .ui-paging-info{line-height:40px;}
 		#pg_page input{margin:0 5px;}
 	#page_center .ui-icon{font-family:"icomoon";display:block;width:20px;height:20px;line-height:20px;color:#808080;}
 	.ui-icon-seek-prev,.ui-icon-seek-next{font-size:16px;}
 	.ui-icon-seek-first,.ui-icon-seek-end{font-size:10px;}
-	.ui-icon-seek-prev:before{content:"\e90c";}
-	.ui-icon-seek-next:before{content: "\e904";}
-	.ui-icon-seek-first:before{content:"\e923";}
-	.ui-icon-seek-end:before{content: "\e924";}
+	.ui-icon-seek-prev:before{content:"\ea23";}
+	.ui-icon-seek-next:before{content: "\ea24";}
+	.ui-icon-seek-first:before{content:"\ea21";}
+	.ui-icon-seek-end:before{content: "\ea22";}
 .loading.ui-state-active{width:0;height:0;overflow:hidden;}
 
 .page-left{float:left;margin-top:8px;}
 	.page-left *{float:left;}
 	.page-left input{margin-left:10px;margin-top:6px;}
 	.page-left a{padding:5px 12px;border: 1px solid #CCC;color: #989898;margin-left: 10px;}
-	
- /* 流程图 */
- .flow-char{overflow:hidden;clear:both;padding-top:60px;margin:30px auto;text-align:center;position:relative;}
- 	.flow-char .line{width:95%;height:4px;line-height:0;background:#ddd;position:absolute;top:73px;left:0;z-index:0;}
- 	.flow-char>*{float:left;margin:0 15px;position:relative;z-index:1;}
- 	.flow-char>span:nth-of-type(1){margin-left:0;}
- 	.flow-char>span:nth-of-type(2){margin-right:0;}
- 	.flow-char>span{width:60px;height:30px;line-height:30px;border-radius:15px;background:#3B8FF6;color:#fff;}
- 	.flow-char>label,.flow-char .span-par span{width:100px;line-height:30px;color:#fff;}
- 	.flow-char .bg0,.process-dis .bg0{background:#ccc;}
- 	.flow-char .bg1,.process-dis .bg1{background:#7ac843;}
- 	.flow-char .bg2,.process-dis .bg2{background:red;}
- 	.flow-char .bg3,.process-dis .bg3{background:#ff921e;}
- 	.flow-char .span-par{padding-left:20px;}
- 	.flow-char .span-par2{background:url(../img/span-par2.png) left center no-repeat;}
- 	.flow-char .span-par3{background:url(../img/span-par3.png) left center no-repeat;}
- 		.flow-char .span-par span{display:block;padding:0;text-align:center;margin:10px 0;}
- 		.flow-normal .antzone{width:120px;height:60px;line-height:60px;padding:37px 0 0 70px;margin:-52px 0 0 -70px;}
- 		.flow-normal .antzone.bg0{background:url(../img/bg0.png) no-repeat;}
- 		.flow-normal .antzone.bg1{background:url(../img/bg1.png) no-repeat;}
- 		.flow-normal .antzone.bg2{background:url(../img/bg2.png) no-repeat;}
- 		.flow-normal .antzone.bg3{background:url(../img/bg3.png) no-repeat;}
- 	
- /* 临时任务流程图 */
- .flow-temp{width:680px;}
- 	.flow-temp .antzone{width:120px;height:60px;line-height:60px;padding:37px 0 0 198px;margin:-52px 0 0 -198px;}
- 	.flow-temp .antzone.bg0{background:url(../img/temp0.png) no-repeat;}
-	.flow-temp .antzone.bg1{background:url(../img/temp1.png) no-repeat;}
-	.flow-temp .antzone.bg2{background:url(../img/temp2.png) no-repeat;}
-	.flow-temp .antzone.bg3{background:url(../img/temp3.png) no-repeat;}
-/* 流程图说明 */
-.process-dis{width:380px;margin:20px auto;}
-	.process-dis *{float:left;}
-	.process-dis em{width:30px;height:10px;margin:2px 5px 0 20px;}
-/* 弹出框--上传附件 */
-.madal{width:400px;height:auto;position:fixed;top:50%;left:50%;margin:-200px 0 0 -200px;border:1px solid #ddd;background:#fff;}
- 	.modal .upload-container{margin-bottom:10px;}
-/* 系统通知详情 */
-#detials .modal-body p *{float:left;line-height:30px;}
-#detials .modal-body p label{width:80px;text-align:right;font-weight:bold;margin-right:5px;}
 /* 权限配置 */
 .permission{width:100%;margin-top:10px;}
 	.thead{padding:0 10px;height:40px;line-height:40px;background:#f7f7f7;border-top:1px solid #eee;}

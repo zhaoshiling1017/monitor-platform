@@ -33,7 +33,7 @@ $.jgrid.regional["cn"] = {
         recordtext: "第{0}到第{1}条\u3000共 {2} 条", // 共字前是全角空格
         emptyrecords: "没有记录！",
         loadtext: "读取中...",
-        savetext: "保存中...",
+	savetext: "保存中...",
         pgtext : "第{0}页\u3000共{1}页",
 		pgfirst : "第一页",
 		pglast : "最后一页",

@@ -2,8 +2,10 @@
  * Created by lj on 16/8/31.
  */
 $(function(){
-//    initListNumHeight();
-
+    resize();
+    $(window).resize(function(){
+        resize();
+    })
     //全选
     $(".table thead th :checkbox").click(function(){
         selectListAll(this);
@@ -33,34 +35,6 @@ $(function(){
         }else{
             all.prop("checked",false);
             _all.prop("checked",false);
-        }
-    });
-
-    //点击标题一次后转为已读
-    $(".table tbody .inform-title").one('click',function(){
-        $(this).parent().parent().removeClass("bold");
-    });
-
-    //标为已读
-    $("[action='read']").click(function(){
-        var all = $(".table thead th :checkbox");
-        var _all = $(".table-footer :checkbox");
-        var table = $(this).parent().prev();
-        if(all.prop("checked")){
-        	var arr = getCheckedId();
-        	for(var i=0;i<arr.length;i++){
-        		readMessage(arr[i]);
-        	}
-            table.find("tr").removeClass("bold");
-            table.find(":checkbox").prop("checked",false);
-            _all.prop("checked",false);
-        }else {
-        	var arr = getCheckedId();
-        	for(var i=0;i<arr.length;i++){
-        		readMessage(arr[i]);
-        	}
-            table.find(":checkbox:checked").parent().parent().removeClass("bold");
-            table.find(":checkbox").prop("checked",false);
         }
     });
     //删除
@@ -126,45 +100,6 @@ $(function(){
 
 });
 
-//获取选中条目的未读id
-function getCheckedId(){
-	var items = $(".table tbody .bold").find(":checkbox:checked");
-	var arr = [];
-	for(var i = 0;i<items.length;i++){
-		arr.push($(items[i]).attr("value"));
-	}
-	return arr;
-}
-//获取选中条目的id
-function getCheckedIdAll(){
-	var items = $(".table tbody").find(":checkbox:checked");
-	var arr = [];
-	for(var i = 0;i<items.length;i++){
-		arr.push($(items[i]).attr("value"));
-	}
-	return arr;
-}
-
-//判断是否所有列表项均被选中
-function ifAllChecked() {
-    var sign = 1;
-    $(".table tbody td :checkbox").each(function(){
-        if(!$(this).prop("checked")){
-            sign = 0;
-            return false;
-        }
-    });
-    return sign;
-}
-
-//初始化主页中通知数目容器的高度
-function initListNumHeight() {
-    $(".list-num").each(function(){
-        var h = $(this).next().innerHeight();
-        $(this).css({height:h+'px',lineHeight:h+'px'});
-    });
-}
-
 //选中所有列表项
 function selectListAll(eObj) {
     var table = $(eObj).parentsUntil(".table").filter("thead").parent();
@@ -196,33 +131,7 @@ function selectChild(eObj) {
         children.prop("checked",false);
     }
 }
-
-//启用和停用，待完成
-function switchAction(action,ele) {
-    switch(action){
-        case 'on':
-            $(ele).text("停用").attr("action","off");
-            break;
-        case 'off':
-            $(ele).text("启用").attr("action","on");
-            break;
-        default:
-            break;
-    }
-}
-
-//判断日期输入是否合法，待完成
-function isTimeLegal(){
-    var timeStart = $(".date-picker.start").val();
-    var timeEnd = $(".date-picker.end").val();
-
-    if(timeStart && timeEnd){
-        if(timeStart > timeEnd){
-            return false;
-        }else {
-            return true;
-        }
-    }else {
-        return false;
-    }
+function resize(){
+    var obj = $(".ui-jqgrid,.ui-jqgrid-view,.ui-jqgrid-hdiv,.ui-jqgrid-htable,.ui-jqgrid-bdiv,.ui-jqgrid-btable,.ui-jqgrid-pager");
+    obj.css("width","100%");
 }

@@ -36,34 +36,26 @@
 	</script>
 </head>
 <body>
-    <!-- <div class="header">
-        <<ul class="nav nav-zsj">
-            <li><a href="javascript:;" class="active">了解通号公司</a></li>
-            <li><a href="javascript:;">下载app</a></li>
-            <li><a href="javascript:;">帮助</a></li>
-        </ul>
-    </div> -->
     <div class="wrapper">
-        <img class="img-top" src="static/img/DNA-top.png">
-        <img class="img-bottom" src="static/img/DNA-bottom.png">
         <div class="content">
         <form action="login" method="post" id="loginForm">
-            <span class="icon-brand icon icon-logo"></span>
-            <h2 class="brand">6号线受电弓状态及裂纹监控平台</h2>
+            <span class="icon-brand icon icon-3"></span>
+            <p class="brand">北京地铁六号线</p>
+            <p class="brand">受电弓状态及裂纹监控平台</p>
 			<p style="color:red;"></p>
 			<p class="error" id="result">$!message</p>
             <div class="icon-input">
-                <span class="icon-user"></span>
+                <span class="icon-1"></span>
                 <input type="text"  name="username" placeholder="用户名" id="username">
             </div>
             <div class="icon-input">
-                <span class="icon-psw"></span>
+                <span class="icon-2"></span>
                 <input type="password" name="password" placeholder="登录密码" id="password">
             </div>
             <button class="btn-login" type="button" onclick="submitLogin()">登录</button>
         </form>
         </div>
-        <div class="footer">管理系统由神州同正科技有限公司开发</div>
+        <div class="footer">北京神州同正科技有限公司开发</div>
     </div>
 <script>
 function submitLogin(){

@@ -29,23 +29,21 @@
     <!--导航链接-->
     <nav>
         <ul class="nav-ul clear left">
-            <li class="nav-add ">
-
-            </li>
             <li class="nav-home link selected" data-href="$path/main">
-                <span class="icon-home"></span>
-                <a href="javascript:void(0)" target="myiframe">主页</a>
+                <a href="$path/monitors" target="myiframe">在线实时监测</a>
+            </li>
+            <li class="nav-home link" data-href="$path/main">
+                <a href="$path/defects" target="myiframe">缺陷库</a>
             </li>
 			#if($shiro.hasPermission("系统管理"))
             <li class="nav-administration link multi-select">
-                <span class="icon-setup"></span>
                 <a href="javascript:void(0);">系统管理</a>
                 <span class="seat-icon icon-left-triangle"></span>
                 <!--collapes-->
                 <ul class="amazed-collapse collapse">
 					#if($shiro.hasPermission("系统管理-人员管理"))
                     <li>
-                        <a href="$path//users/person" target="myiframe">人员管理</a>
+                        <a href="$path/users/person" target="myiframe">人员管理</a>
                     </li>
 					#end
 					#if($shiro.hasPermission("系统管理-角色管理"))
@@ -63,12 +61,7 @@
     <section class="section">
         <!--iframe-->
         <div class="iframe-parent">
-            <iframe src="$path/main" frameborder="0"  id="myiframe" name="myiframe"></iframe>
-        </div>
-        <!--calendar-->
-        <div id="calendar">
-            <h2>日历便签<a href="javascript:;" class="icon-close"></a></h2>
-            <div class="calendar"></div>
+            <iframe src="$path/monitors" frameborder="0"  id="myiframe" name="myiframe"></iframe>
         </div>
     </section>
 </div>
@@ -147,8 +140,6 @@
 			</form>
         </div>
     </div>
-    
-    
 #parse('common/path-js.vm')
 <script>
 	function passwordUpdate(){
@@ -184,22 +175,6 @@
 	function editPassword(){
 		$("#password-edit").show();
 	}
-    $(function(){
-        //初始化日历
-        $(".calendar").clndr();
-        /*if (typeof(EventSource) !== "undefined") {
-            var source = new EventSource("$path/sseTest");
-            source.addEventListener('message', function(e) {
-                console.log(e.data);
-            });
-            source.addEventListener('open', function(e) {
-                console.log("连接打开.");
-            });
-
-            source.addEventListener('error', function(e) {
-            });
-        }*/
-    })
 </script>
 </body>
 </html>

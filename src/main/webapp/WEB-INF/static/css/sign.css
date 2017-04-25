@@ -54,17 +54,6 @@ ul.nav > li {
   height: 100%;
   text-align: center;
 }
-.wrapper .img-top {
-  position: fixed;
-  top: -50px;
-  right: 0;
-  z-index: -1;
-}
-.wrapper .img-bottom {
-  position: fixed;
-  bottom: 0;
-  left: -100px;
-}
 .nav-zsj {
   list-style: none;
   float: right;
@@ -85,13 +74,16 @@ ul.nav > li {
   background-color: #09F;
 }
 .content {
-  width: 325px;
-  height:300px;
+  width: 440px;
+  padding:30px;
   position:absolute;
   top:50%;
   left:50%;
-  margin:-200px 0 0 -162px;
+  margin:-300px 0 0 -230px;
   text-align: center;
+  border-radius:10px;
+  border:1px solid #ddd;
+  box-shadow:0 5px 10px #bbb;
 }
 .content h1.text-gray {
   color: #595757;
@@ -99,8 +91,14 @@ ul.nav > li {
 .content.separate {
   margin-top: 120px;
 }
-.content.content-main .brand {
-  color: #FFF;
+#loginForm .brand {
+  font-size:18px;
+  display:block;
+  margin:10px 0;
+}
+#loginForm .brand:nth-of-type(2){
+	font-size:24px;
+	margin-bottom:30px;
 }
 .content.content-main p.first {
   -webkit-margin-after: 0.5em;
@@ -113,10 +111,10 @@ ul.nav > li {
   margin-top: 30px;
 }
 .icon-brand {
-  font-size: 52px;
+  font-size: 70px;
   color: #FFF;
   padding: 5px;
-  background-color: #09F;
+  color: #09F;
   border-radius: 8px;
 }
 .brand {
@@ -130,32 +128,38 @@ ul.nav > li {
   overflow: hidden;
   border: 1px solid #E6E6E6;
   margin: 10px 0;
+  border-radius:3px;
 }
 .icon-input span {
   float: left;
-  width: 30px;
-  height: 36px;
-  line-height: 36px;
+  width: 50px;
+  height: 46px;
+  line-height: 46px;
   text-align: center;
-  color: #CCC;
+  color: #999;
+  font-size:20px;
+  border-right:1px solid #e6e6e6;
 }
 .icon-input input {
   float: left;
-  width: 283px;
-  height: 36px;
+  width: 326px;
+  height: 46px;
   border: 0;
   outline: none;
   padding:0 5px;
+  background-color:#fff !important;
 }
 .btn-login {
   display: inline-block;
   width: 100%;
-  height: 35px;
-  line-height: 35px;
+  height: 46px;
+  line-height: 46px;
   color: #FFF;
   background-color: #09F;
   font-size: 14px;
   border:0;
+  border-radius:3px;
+  margin:50px 0 30px;
 }
 span.checkbox {
   float: left;

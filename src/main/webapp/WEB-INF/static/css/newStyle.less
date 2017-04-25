@@ -1,0 +1,242 @@
+*{
+  margin:0;
+  padding:0;
+  font-size:12px;
+  font-family: "微软雅黑";
+}
+body,html{
+  width:100%;
+  height:100%;
+  background:none;
+}
+ul{
+  list-style: none;
+}
+a{
+  text-decoration: none;
+}
+img{
+  border:0;
+}
+
+/*标题*/
+.left,.right{
+  border:1px solid #e6e6e6;
+  background:#fff;
+  .heading{
+    padding:0 10px;
+    line-height:40px;
+    border-bottom:1px solid #e6e6e6;
+    overflow: hidden;
+    clear: both;
+    .btn{
+      float: right;
+      text-align: center;
+      background: #5581d6;
+      color: #fff;
+      border-radius:3px;
+      margin-top:5px;
+    }
+  }
+}
+/*在线实时监测*/
+.testLeft{
+  margin-right:310px;
+  .tab{
+    position: relative;
+    min-height:600px;
+    .nav{
+      position: absolute;
+      left:0;
+      top:0;
+      width:365px;
+      padding:0 10px;
+      border-right:1px solid #eee;
+      border-bottom: 0;
+      li{
+        float: left;
+        width:100%;
+        margin-top:10px;
+        position: relative;
+        box-sizing: border-box;
+        overflow: hidden;
+        &:nth-of-type(1){
+          margin-top:0;
+        }
+        >a{
+          padding:0;
+          margin:0;
+          border:0;
+        }
+        p{
+          width:100%;
+          position: absolute;
+          left:0;
+          top:0;
+          line-height:30px;
+          background:#000;
+          color:#fff;
+          text-indent:10px;
+        }
+        &.active{
+          border:2px solid #ff921e;
+        }
+      }
+    }
+    .tab-content{
+      margin-left:375px;
+      margin-right:10px;
+      ul{
+        width:100%;
+        li{
+          width:100%;
+          img{
+            width:100%;
+          }
+          display: none;
+          &:nth-of-type(1){
+            display: block;
+          }
+        }
+      }
+      >div{
+        display: none;
+        &.active{
+          display: block;
+        }
+        ul{
+          li{
+            position: relative;
+            p{
+              width:100%;
+              height:40px;
+              position: absolute;
+              left:0;
+              top:0;
+              background:#000;
+              *{
+                color: #fff;
+                line-height:40px;
+              }
+              label{
+                float: left;
+                margin-left:10px;
+              }
+              span{
+                float: right;
+                margin-right:10px;
+              }
+            }
+          }
+        }
+        .btn-container{
+          width:200px;
+          margin:30px auto;
+          background: #f1f1f1;
+          border-radius:3px;
+          overflow: hidden;
+          border:1px solid #e6e6e6;
+          *{
+            float:left;
+            text-align: center;
+            line-height:50px;
+          }
+          >a{
+            width:60px;
+            font-size:24px;
+            border-radius: 3px;
+            background:#fefefe;
+            color: #648ef1;
+            text-decoration: none;
+            &.icon-4{
+              border-right:1px solid #e6e6e6;
+            }
+            &.icon-5{
+              border-left:1px solid #e6e6e6;
+            }
+          }
+          span{
+            width:78px;
+          }
+        }
+      }
+    }
+  }
+}
+.testRight{
+  width:300px;
+  position: absolute;
+  top:0;
+  right:0;
+  .header{
+    line-height:24px;
+    border-left:3px solid #ff921e;
+    margin-top:10px;
+    text-indent:10px;
+  }
+  >div{
+    min-height:200px;
+    ul{
+      padding:0 10px 10px;
+      clear: both;
+      overflow-flow:hidden;
+      li{
+        float: left;
+        width:100%;
+        *{
+          float: left;
+          line-height:30px;
+
+        }
+      }
+    }
+    p.info{
+      padding:10px;
+      line-height:30px;
+    }
+  }
+}
+/*缺陷库*/
+.defectLeft{
+  position: absolute;
+  left:0;
+  top:0;
+  width:300px;
+  .defectTree{
+    padding:10px;
+  }
+}
+.defectRight{
+  margin-left:310px;
+  .defect-container{
+    padding:10px;
+  }
+}
+/*表格样式*/
+.ui-jqgrid{
+  border-top:5px solid #5581d6;
+  .ui-jqgrid-view{
+    th{
+      line-height:36px;
+      background: #e5e5e5;
+    }
+    td{
+      line-height:40px;
+      background: #fff;
+    }
+    th,td{
+      border:1px solid #dcdcdc;
+      border-collapse: collapse;
+      text-align: center;
+    }
+    .jqgfirstrow td{
+      border:0;
+    }
+  }
+}
+.datetimepicker{
+  span{
+    padding:0;
+    border:0;
+  }
+}

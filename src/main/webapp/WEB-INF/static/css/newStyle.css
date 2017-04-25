@@ -1,0 +1,239 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  font-family: "微软雅黑";
+}
+body,
+html {
+  width: 100%;
+  height: 100%;
+  background: none;
+}
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+img {
+  border: 0;
+}
+/*标题*/
+.left,
+.right {
+  border: 1px solid #e6e6e6;
+  background: #fff;
+}
+.left .heading,
+.right .heading {
+  padding: 0 10px;
+  line-height: 40px;
+  border-bottom: 1px solid #e6e6e6;
+  overflow: hidden;
+  clear: both;
+}
+.left .heading .btn,
+.right .heading .btn {
+  float: right;
+  text-align: center;
+  background: #5581d6;
+  color: #fff;
+  border-radius: 3px;
+  margin-top: 5px;
+}
+/*在线实时监测*/
+.testLeft {
+  margin-right: 310px;
+}
+.testLeft .tab {
+  position: relative;
+  min-height: 600px;
+}
+.testLeft .tab .nav {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 365px;
+  padding: 0 10px;
+  border-right: 1px solid #eee;
+  border-bottom: 0;
+}
+.testLeft .tab .nav li {
+  float: left;
+  width: 100%;
+  margin-top: 10px;
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.testLeft .tab .nav li:nth-of-type(1) {
+  margin-top: 0;
+}
+.testLeft .tab .nav li > a {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+.testLeft .tab .nav li p {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  line-height: 30px;
+  background: #000;
+  color: #fff;
+  text-indent: 10px;
+}
+.testLeft .tab .nav li.active {
+  border: 2px solid #ff921e;
+}
+.testLeft .tab .tab-content {
+  margin-left: 375px;
+  margin-right: 10px;
+}
+.testLeft .tab .tab-content ul {
+  width: 100%;
+}
+.testLeft .tab .tab-content ul li {
+  width: 100%;
+  display: none;
+}
+.testLeft .tab .tab-content ul li img {
+  width: 100%;
+}
+.testLeft .tab .tab-content ul li:nth-of-type(1) {
+  display: block;
+}
+.testLeft .tab .tab-content > div {
+  display: none;
+}
+.testLeft .tab .tab-content > div.active {
+  display: block;
+}
+.testLeft .tab .tab-content > div ul li {
+  position: relative;
+}
+.testLeft .tab .tab-content > div ul li p {
+  width: 100%;
+  height: 40px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: #000;
+}
+.testLeft .tab .tab-content > div ul li p * {
+  color: #fff;
+  line-height: 40px;
+}
+.testLeft .tab .tab-content > div ul li p label {
+  float: left;
+  margin-left: 10px;
+}
+.testLeft .tab .tab-content > div ul li p span {
+  float: right;
+  margin-right: 10px;
+}
+.testLeft .tab .tab-content > div .btn-container {
+  width: 200px;
+  margin: 30px auto;
+  background: #f1f1f1;
+  border-radius: 3px;
+  overflow: hidden;
+  border: 1px solid #e6e6e6;
+}
+.testLeft .tab .tab-content > div .btn-container * {
+  float: left;
+  text-align: center;
+  line-height: 50px;
+}
+.testLeft .tab .tab-content > div .btn-container > a {
+  width: 60px;
+  font-size: 24px;
+  border-radius: 3px;
+  background: #fefefe;
+  color: #648ef1;
+  text-decoration: none;
+}
+.testLeft .tab .tab-content > div .btn-container > a.icon-4 {
+  border-right: 1px solid #e6e6e6;
+}
+.testLeft .tab .tab-content > div .btn-container > a.icon-5 {
+  border-left: 1px solid #e6e6e6;
+}
+.testLeft .tab .tab-content > div .btn-container span {
+  width: 78px;
+}
+.testRight {
+  width: 300px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.testRight .header {
+  line-height: 24px;
+  border-left: 3px solid #ff921e;
+  margin-top: 10px;
+  text-indent: 10px;
+}
+.testRight > div {
+  min-height: 200px;
+}
+.testRight > div ul {
+  padding: 0 10px 10px;
+  clear: both;
+  overflow-flow: hidden;
+}
+.testRight > div ul li {
+  float: left;
+  width: 100%;
+}
+.testRight > div ul li * {
+  float: left;
+  line-height: 30px;
+}
+.testRight > div p.info {
+  padding: 10px;
+  line-height: 30px;
+}
+/*缺陷库*/
+.defectLeft {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 300px;
+}
+.defectLeft .defectTree {
+  padding: 10px;
+}
+.defectRight {
+  margin-left: 310px;
+}
+.defectRight .defect-container {
+  padding: 10px;
+}
+/*表格样式*/
+.ui-jqgrid {
+  border-top: 5px solid #5581d6;
+}
+.ui-jqgrid .ui-jqgrid-view th {
+  line-height: 36px;
+  background: #e5e5e5;
+}
+.ui-jqgrid .ui-jqgrid-view td {
+  line-height: 40px;
+  background: #fff;
+}
+.ui-jqgrid .ui-jqgrid-view th,
+.ui-jqgrid .ui-jqgrid-view td {
+  border: 1px solid #dcdcdc;
+  border-collapse: collapse;
+  text-align: center;
+}
+.ui-jqgrid .ui-jqgrid-view .jqgfirstrow td {
+  border: 0;
+}
+.datetimepicker span {
+  padding: 0;
+  border: 0;
+}
