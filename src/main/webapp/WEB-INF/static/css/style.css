@@ -791,7 +791,7 @@ a.disabled{
 /* jqgrid */
 .table tbody .jqgfirstrow{height:0;}
 .ui-jqgrid-resize{display:none;}
-.page{height:40px;background:#f7f7f7;border-top:1px solid #eee;overflow:hidden;clear:both;}
+.page{height:40px;overflow:hidden;clear:both;}
 	#pg_page{width:380px;float:right;}
 		#pg_page .ui-paging-info{line-height:40px;}
 		#pg_page input{margin:0 5px;}
@@ -825,6 +825,3 @@ a.disabled{
 				.tbody .list li ul input{margin-left:20px;}
 				.tbody .list li>label,.tbody .list li>span{width:50%;}
 				.tbody .list li span{line-height:36px;color:#888;}
-.height230{height:230px;overflow:auto;}	
-.height162{height:162px;}			
-.h278{height:278px;overflow:auto;}
