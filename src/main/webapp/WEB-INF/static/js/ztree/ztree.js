@@ -60,8 +60,7 @@ function beforeRemove(treeId, treeNode) {
     showLog("[ "+getTime()+" beforeRemove ]&nbsp;&nbsp;&nbsp;&nbsp; " + treeNode.name);
     var zTree = $.fn.zTree.getZTreeObj("defectTree");
     zTree.selectNode(treeNode);
-    //return confirm("确认删除 节点 -- " + treeNode.name + " 吗？");
-    parent.InitAlert(1)
+    return confirm("确认删除 节点 -- " + treeNode.name + " 吗？");
 }
 function onRemove(e, treeId, treeNode) {
     showLog("[ "+getTime()+" onRemove ]&nbsp;&nbsp;&nbsp;&nbsp; " + treeNode.name);

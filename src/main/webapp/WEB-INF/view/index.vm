@@ -29,14 +29,14 @@
     <!--导航链接-->
     <nav>
         <ul class="nav-ul clear left">
-            <li class="nav-home link selected" data-href="$path/main">
+            <li class="nav-home link selected">
                 <a href="$path/monitors" target="myiframe">在线实时监测</a>
             </li>
-            <li class="nav-home link" data-href="$path/main">
+            <li class="nav-home link">
                 <a href="$path/defects" target="myiframe">缺陷库</a>
             </li>
-            <li class="nav-home link" data-href="$path/main">
-                <a href="$path/faults" target="myiframe">故障查询</a>
+            <li class="nav-home link">
+                <a href="$path/faults" target="myiframe">缺陷查询</a>
             </li>
 			#if($shiro.hasPermission("系统管理"))
             <li class="nav-administration link multi-select">

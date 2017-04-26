@@ -25,16 +25,14 @@ img {
   border: 1px solid #e6e6e6;
   background: #fff;
 }
-.left .heading,
-.right .heading {
+.heading {
   padding: 0 10px;
   line-height: 40px;
   border-bottom: 1px solid #e6e6e6;
   overflow: hidden;
   clear: both;
 }
-.left .heading a[class^="btn-"],
-.right .heading a[class^="btn-"] {
+.heading a[class^="btn-"] {
   width: 80px;
   line-height: 30px;
   padding: 0;
@@ -43,17 +41,15 @@ img {
   box-sizing: border-box;
   border-radius: 3px;
   margin-top: 5px;
+  margin-left: 10px;
 }
-.left .heading a[class^="btn-"].btn-search,
-.right .heading a[class^="btn-"].btn-search {
+.heading a[class^="btn-"].btn-search {
   background: #5581d6;
   border: 1px solid #5581d6;
   color: #fff;
 }
-.left .heading a[class^="btn-"].btn-export,
-.right .heading a[class^="btn-"].btn-export {
+.heading a[class^="btn-"].btn-export {
   border: 1px solid #dcdcdc;
-  margin-right: 10px;
 }
 /*在线实时监测*/
 .testLeft {
@@ -245,6 +241,8 @@ img {
 }
 .ui-jqgrid .ui-jqgrid-view .jqgfirstrow td {
   border: 0;
+  height: 0;
+  overflow: hidden;
 }
 .datetimepicker span {
   padding: 0;
@@ -259,6 +257,7 @@ span.ui-icon {
   font-family: "icomoon";
   font-size: 14px;
   margin: 0 5px;
+  color: #808080;
 }
 /*故障详情*/
 .detial .form-inline {
@@ -274,4 +273,31 @@ span.ui-icon {
 .panel {
   background: #fff;
   border: 1px solid #dcdcdc;
+}
+/*老版样式调整*/
+.wrapperBg {
+  background: #fff;
+}
+.wrapperBg .panel {
+  border: 1px solid #dcdcdc;
+}
+form {
+  margin: 20px 0;
+}
+.table-container {
+  padding: 10px;
+}
+.ui-pager-control {
+  float: right;
+}
+.ui-pager-control .ui-pg-input {
+  width: 40px;
+  line-height: 26px;
+  margin: 0 5px;
+  border: 1px solid #dcdcdc;
+  text-align: center;
+}
+.bootstrap-datetimepicker-widget table td,
+.bootstrap-datetimepicker-widget table th {
+  border-radius: 0 !important;
 }

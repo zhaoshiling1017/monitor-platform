@@ -203,6 +203,7 @@ nav {
 }
 .nav-ul > li > a {
     color: #666;
+    display:block;
 }
 .nav-ul > li >[class^='icon']{
     position: relative;

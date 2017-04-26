@@ -2,6 +2,12 @@
  * Created by lj on 16/8/31.
  */
 $(function(){
+	//初始化日期控件
+	if($(".datetimepicker").length>0){
+		$(".datetimepicker").datetimepicker({
+	        format: 'YYYY-MM-DD'
+	    })
+	}
     resize();
     $(window).resize(function(){
         resize();
@@ -55,10 +61,7 @@ $(function(){
         	for(var i=0;i<arr.length;i++){
         		delMessage(arr[i]);
         	}
-            //table.find(":checkbox:checked").parent().parent().remove();
-//            $(".alert-box .btn-cancel").on('click',function(){
-                table.find(":checkbox:checked").parent().parent().remove();
-//            });
+            table.find(":checkbox:checked").parent().parent().remove();
             AlertBox(0);
         }
     });
@@ -97,7 +100,7 @@ $(function(){
 		}
 		
 	})
-
+	
 });
 
 //选中所有列表项

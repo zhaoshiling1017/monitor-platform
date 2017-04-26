@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>人员管理</title>
 	#parse('common/path-css.vm')
+	<link href="$path/static/css/newStyle.css" rel="stylesheet">
     <script src="$path/static/js/jquery.min.js" type="text/javascript"></script>
     <script src="$path/static/js/main.js" type="text/javascript"></script>
     <script src="$path/static/js/index.js" type="text/javascript"></script>
@@ -16,11 +17,15 @@
     <script src="$path/static/js/json/json-serializeObject.js" type="text/javascript"></script>
 </head>
 <body>
-<div class="wrapper">
+<div class="wrapper wrapperBg">
     <div class="panel">
-        <div class="panel-head">
-            <h4>人员管理</h4>
-        </div>
+        <p class="heading">人员管理
+		    <a href="javascript:void(0);" class="btn-export" onclick="getTableData()">查询</a>
+		    <a href="javascript:void(0);" class="btn-export">刷新</a>
+		    #if($shiro.hasPermission("人员管理-新增"))
+            <a href="javascript:void(0);" class="btn-search" data-modal="people-add">新增</a>
+			#end
+        </p>
         <div class="panel-body">
             <form class="control-condition" id="userForm">
                 <div class="form-inline">
@@ -49,26 +54,14 @@
                     </select>
                 </div>
                 <div class="btn-group">
-					#if($shiro.hasPermission("人员管理-新增"))
-                        <a href="javascript:void(0);" class="btn-icon danger" data-modal="people-add">
-                            <i class="icon-cross"></i>
-                            <span>新增</span>
-                        </a>
-					#end
-                    <a href="javascript:void(0);" class="btn-icon">
-                        <i class="icon-refresh"></i>
-                        <span>刷新</span>
-                    </a>
-                    <a href="javascript:void(0);" class="btn-icon" onclick="getTableData()">
-                        <i class="icon-search"></i>
-                        <span>查询</span>
-                    </a>
                 </div>
                 <div class="clear"></div>
             </form>
-            <!-- checkbox table -->
-            <table  id="userTable" class="table table-bordered"></table>
-            <div id="page"></div>
+            <div class="table-container">
+	            <!-- checkbox table -->
+	            <table  id="userTable" class="table table-bordered"></table>
+	            <div id="page"></div>
+            </div>
         </div>
     </div>
 </div>

@@ -19,7 +19,9 @@
 <body>
 <div class="wrapper detial">
     <div class="right defectRight" style="margin-left:0;">
-        <p class="heading">缺陷详情</p>
+        <p class="heading">缺陷详情
+        	<a class="btn-export" href="$path/faults">返回</a>
+        </p>
         <div class="defect-container">
             <form class="control-condition" id="userForm">
             	<div class="form-inline">
