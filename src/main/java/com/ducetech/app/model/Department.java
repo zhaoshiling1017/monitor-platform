@@ -5,13 +5,6 @@ import lombok.Data;
 
 import java.io.Serializable;
 
-/**
- * @ClassName: Department
- * @author chensf
- * @date 2015年9月25日 上午10:40:30
- * @Description: 部门
- */
-
 @Data
 public class Department extends BaseModel implements Serializable {
 

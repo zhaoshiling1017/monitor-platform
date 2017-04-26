@@ -17,28 +17,28 @@
 	</resultMap>
 	
 	<insert id="insertDepartment" useGeneratedKeys="true" keyProperty="departmentId" parameterType="com.ducetech.app.model.Department">
-		insert into department(department_id,department_code,department_name,level,type,parent_department_id,principal_person_id,creator_id,created_at,is_deleted)
+		insert into t_department(department_id,department_code,department_name,level,type,parent_department_id,principal_person_id,creator_id,created_at,is_deleted)
 		values(#{departmentId},#{departmentCode},#{departmentName},#{level},#{type},#{parentDepartmentId},#{principalPersonId},#{creatorId},#{createdAt},#{isDeleted})
 	</insert>
 	
 	<select id="selectAllDepartments" resultMap="departmentMap">
-		select * from department where is_deleted=0
+		select * from t_department where is_deleted=0
 	</select>
 	
 	<select id="selectDepartmentById" parameterType="string" resultMap="departmentMap">
-		select * from department where department_id=#{departmentId}
+		select * from t_department where department_id=#{departmentId}
 	</select>
 	
 	<update id="updateDepartment" parameterType="com.ducetech.app.model.Department">
-		update department set department_code=#{departmentCode},department_name=#{departmentName},parent_department_id=#{parentDepartmentId},principal_person_id=#{principalPersonId} where department_id=#{departmentId}
+		update t_department set department_code=#{departmentCode},department_name=#{departmentName},parent_department_id=#{parentDepartmentId},principal_person_id=#{principalPersonId} where department_id=#{departmentId}
 	</update>
 	
 	<update id="deleteDepartmentById" parameterType="string">
-		update department set is_deleted=1 where department_id=#{departmentId}
+		update t_department set is_deleted=1 where department_id=#{departmentId}
 	</update>
 	
 	<select id="selectDepartmentByCond" parameterType="com.ducetech.app.model.Department" resultMap="departmentMap">
-		select * from department where is_deleted=0  
+		select * from t_department where is_deleted=0
 	    <if test="departmentCode != null and departmentCode != ''">  
 	        and department_code like '%' #{departmentCode} '%'  
 	    </if>  
@@ -48,18 +48,18 @@
 	</select>
 	
 	<select id="selectDepartmentByType" parameterType="string" resultMap="departmentMap">
-		select * from department where is_deleted=0 and type = #{type}
+		select * from t_department where is_deleted=0 and type = #{type}
 	</select>
 	
 	<select id="selectChildrenDepartments" parameterType="string" resultMap="departmentMap">
-		select * from department where is_deleted=0 and parent_department_id = #{department_id}
+		select * from t_department where is_deleted=0 and parent_department_id = #{department_id}
 	</select>
 	
 	<select id="selectMaxDepartmentCode" resultType="string">
-		select max(cast(department_code as signed integer)) from department
+		select max(cast(department_code as signed integer)) from t_department
 	</select>
 	
 	<select id="selectDepartmentCodeById" parameterType="com.ducetech.app.model.Department" resultMap="departmentMap">
-		select department_code from department where is_deleted=0 and department_id = #{departmentId}
+		select department_code from t_department where is_deleted=0 and department_id = #{departmentId}
 	</select>
 </mapper>

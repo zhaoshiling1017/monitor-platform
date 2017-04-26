@@ -5,12 +5,7 @@ import lombok.Data;
 
 import java.io.Serializable;
 
-/** 
- * @ClassName: Permission  
- * @author chensf
- * @date 2015年9月25日 下午1:53:18 
- * @Description: 权限
- */
+
 @Data
 public class Permission extends BaseModel implements Serializable {
 	

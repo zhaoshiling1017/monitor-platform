@@ -21,24 +21,24 @@
 	
 	<!-- 登录 -->
 	<select id="selectUserByLoginName" resultMap="userMap">
-		select user_id, login_name, password, secret_key, employee_code, name, gender, department_id, phone, email, creator_id, created_at, is_deleted from user where login_name=#{loginName}
+		select user_id, login_name, password, secret_key, employee_code, name, gender, department_id, phone, email, creator_id, created_at, is_deleted from t_user where login_name=#{loginName}
 	</select>
 	
 	<!-- 获取某用户的全部菜单权限 -->
 	<select id="selectPermissionByUserId" resultType="String">
-		select permission_str from permission where permission.permission_id in(select 
-		role_permission.permission_id from role_permission where role_permission.role_id 
-		in (select user_role.role_id from user_role where user_role.user_id=#{userId}))
+		select permission_str from t_permission where t_permission.permission_id in(select
+		t_role_permission.permission_id from t_role_permission where t_role_permission.role_id
+		in (select t_user_role.role_id from t_user_role where t_user_role.user_id=#{userId}))
 	</select>
 	
 	<!-- 根据ID精确查找用户 -->
 	<select id="selectUserByUserId" resultMap="userMap">
-		select user_id, login_name, password, secret_key, employee_code, name, gender, department_id, phone, email, creator_id, created_at, is_deleted from user where user_id=#{userId}
+		select user_id, login_name, password, secret_key, employee_code, name, gender, department_id, phone, email, creator_id, created_at, is_deleted from t_user where user_id=#{userId}
 	</select>
 	
 	<!-- 对用户的通用查询  -->
 	<select id="selectUser" parameterType="com.ducetech.app.model.User" resultMap="userMap">
-		select user_id, login_name, password, secret_key, employee_code, name, gender, department_id, phone, email, creator_id, created_at, is_deleted from user where 1=1
+		select user_id, login_name, password, secret_key, employee_code, name, gender, department_id, phone, email, creator_id, created_at, is_deleted from t_user where 1=1
 		<if test="loginName!=null and loginName!=''">
 			and login_name=#{loginName}
 		</if>
@@ -73,13 +73,13 @@
 	
 	<!-- 插入新用户 -->
 	<insert id="insertUser" useGeneratedKeys="true" keyProperty="userId">
-		insert into user (login_name,password,secret_key,employee_code,name,email,gender,phone,department_id,create_by_id,create_at)
+		insert into t_user (login_name,password,secret_key,employee_code,name,email,gender,phone,department_id,create_by_id,create_at)
 		values(#{loginName},#{password},#{secretKey},#{employeeCode},#{name},#{email},#{gender},#{phone},#{departmentId},#{createById},#{createAt})
 	</insert>
 	
 	<!-- 更新某用户信息 -->
 	<update id="updateUser" parameterType="com.ducetech.app.model.User">
-		update user 
+		update t_user
 		<set>
 			<if test="loginName != null and loginName != ''">
 				login_name=#{loginName},
@@ -120,6 +120,6 @@
 	
 	<!-- 通过角色ID获取人员  -->
 	<select id="selectUsersByRoleId" resultMap="userMap">
-		select user_id, login_name, password, secret_key, employee_code, name, gender, department_id, phone, email, creator_id, created_at, is_deleted from user where user_id in (select user_id from user_role where role_id=#{roleId})
+		select user_id, login_name, password, secret_key, employee_code, name, gender, department_id, phone, email, creator_id, created_at, is_deleted from t_user where user_id in (select user_id from t_user_role where role_id=#{roleId})
 	</select>
 </mapper>

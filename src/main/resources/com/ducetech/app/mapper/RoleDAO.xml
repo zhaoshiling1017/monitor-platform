@@ -14,7 +14,7 @@
 	
 	<!-- 角色通用查询  -->
 	<select id="selectRole" parameterType="com.ducetech.app.model.Role" resultMap="roleMap">
-		select * from role where 1=1
+		select * from t_role where 1=1
 		<if test="roleName!=null and roleName!=''">
 			and role_name=#{roleName}
 		</if>
@@ -25,17 +25,17 @@
 	
 	<!-- 通过角色ID获取角色  -->
 	<select id="selectRoleById" resultMap="roleMap">
-		select * from role where role_id = #{roleId}
+		select * from t_role where role_id = #{roleId}
 	</select>
  	
  	<!-- 新增角色   -->
 	<insert id="insertRole" parameterType="com.ducetech.app.model.Role" useGeneratedKeys="true" keyProperty="roleId">
-		insert into role(role_name,comment) values(#{roleName},#{comment})
+		insert into t_role(role_name,comment) values(#{roleName},#{comment})
 	</insert>
     
 	<!-- 更新角色  -->
 	<update id="updateRole" parameterType="com.ducetech.app.model.Role">
-		update role
+		update t_role
 		<set>
 			<if test="roleName != null and roleName != ''">
 				role_name=#{roleName},
@@ -52,36 +52,36 @@
 	
 	<!-- 按人员ID获取拥有的角色  -->
 	<select id="selectRolesByUserId" resultMap="roleMap">
-		select r.* from role r,user_role u where r.is_deleted=0 and r.role_id=u.role_id and u.user_id=#{userId}
+		select r.* from t_role r,t_user_role u where r.is_deleted=0 and r.role_id=u.role_id and u.user_id=#{userId}
 	</select>
 	
 	<!-- 按人员ID删除拥有的所有角色  -->
 	<delete id="deleteAllRolesByUserId">
-		delete from user_role where user_id=#{userId}
+		delete from t_user_role where user_id=#{userId}
 	</delete>
 	
 	<!-- 给人员重新存入角色  -->
 	<insert id="insertRoleIdAndUserId">
-		insert into user_role(role_id,user_id) values(#{roleId},#{userId})
+		insert into t_user_role(role_id,user_id) values(#{roleId},#{userId})
 	</insert>
 	
 	<!-- 新增创建角色人ID和角色ID -->
 	<insert id="insertUserManagerRole" parameterType="com.ducetech.app.model.Role">
-		insert into user_manager_role (user_id,role_id) values(#{creatorId},#{roleId})
+		insert into t_user_manager_role (user_id,role_id) values(#{creatorId},#{roleId})
 	</insert>
 	
 	<!-- 根据人员ID删除创建角色人ID和角色ID -->
 	<delete id="deleteUserManagerRoleByUserId">
-		delete from user_manager_role where user_id=#{creatorId}
+		delete from t_user_manager_role where user_id=#{creatorId}
 	</delete>
 	
 	<!-- 根据人员ID获取可以管理的角色  -->
 	<select id="selectAllRolesByUserId" resultMap="roleMap">
-		select r.* from role r,user_manager_role u where r.is_deleted=0 and r.role_id=u.role_id and u.user_id=#{userId}
+		select r.* from t_role r,t_user_manager_role u where r.is_deleted=0 and r.role_id=u.role_id and u.user_id=#{userId}
 	</select>
 	
 	<!-- 通过节点ID获取已拥有角色 -->
 	<select id="selectRolesByNodeId" resultMap="roleMap">
-		select r.* from role r,node_role n where r.is_deleted='0' and r.role_id=n.role_id and n.node_id=#{nodeId}
+		select r.* from t_role r,t_node_role n where r.is_deleted='0' and r.role_id=n.role_id and n.node_id=#{nodeId}
 	</select>
 </mapper>
