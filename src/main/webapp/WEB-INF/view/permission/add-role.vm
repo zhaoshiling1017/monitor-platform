@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>新增角色</title>
     #parse('common/path-css.vm')
+    <link href="$path/static/css/newStyle.css" rel="stylesheet">
     <script src="$path/static/js/jquery.min.js" type="text/javascript"></script>
     <script src="$path/static/js/main.js" type="text/javascript"></script>
     <script src="$path/static/js/index.js" type="text/javascript"></script>
@@ -12,10 +13,10 @@
 <body>
     <div class="wrapper">
         <div class="panel">
-            <div class="panel-head">
-                <h4>角色管理<b class="join">-</b><b class="title-child">新增角色</b></h4>
-                <a href="$path/permissions/role" target="myiframe" class="btn btn-back">返回</a>
-            </div>
+        	<p class="heading">角色管理-新增角色
+        		<a href="$path/permissions/role" target="myiframe" class="btn-export">返回</a>
+        		<a href="javascript:void(0)" class="btn-search" onclick="saveRole()">保存</a>
+        	</p>
             <div class="panel-body">
                 <form id="roleForm">
                 	<input type="hidden" id="permissionIds" name="permissionIds"/>
@@ -35,12 +36,6 @@
                 		<span>权限描述</span>
                 	</div>
                 	<div class="tbody">
-                </div>
-                <div class="footer btn-group">
-					<!--
-                    <button class="btn btn-cancel" type="reset">重置</button>
-					-->
-                    <a href="javascript:void(0)" class="btn btn-primary" onclick="saveRole()">保存</a>
                 </div>
             </div>
         </div>

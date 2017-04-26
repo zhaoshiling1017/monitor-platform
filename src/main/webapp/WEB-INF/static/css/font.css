@@ -24,6 +24,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-delete:before {
+  content: "\e908";
+}
+
 .icon-1:before {
   content: "\e900";
 }

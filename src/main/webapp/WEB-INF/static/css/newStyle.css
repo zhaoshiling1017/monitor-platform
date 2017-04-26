@@ -20,8 +20,8 @@ img {
   border: 0;
 }
 /*标题*/
-.left,
-.right {
+div.left,
+div.right {
   border: 1px solid #e6e6e6;
   background: #fff;
 }
@@ -63,7 +63,7 @@ img {
   position: absolute;
   left: 0;
   top: 0;
-  width: 365px;
+  width: 300px;
   padding: 0 10px;
   border-right: 1px solid #eee;
   border-bottom: 0;
@@ -84,6 +84,9 @@ img {
   margin: 0;
   border: 0;
 }
+.testLeft .tab .nav li > a img {
+  width: 100%;
+}
 .testLeft .tab .nav li p {
   width: 100%;
   position: absolute;
@@ -98,7 +101,7 @@ img {
   border: 2px solid #ff921e;
 }
 .testLeft .tab .tab-content {
-  margin-left: 375px;
+  margin-left: 310px;
   margin-right: 10px;
 }
 .testLeft .tab .tab-content ul {
@@ -179,6 +182,9 @@ img {
   top: 0;
   right: 0;
 }
+.testRight .info {
+  display: block;
+}
 .testRight .header {
   line-height: 24px;
   border-left: 3px solid #ff921e;
@@ -200,6 +206,7 @@ img {
 .testRight > div ul li * {
   float: left;
   line-height: 30px;
+  font-size: 12px;
 }
 .testRight > div p.info {
   padding: 10px;
@@ -251,7 +258,8 @@ img {
 .datetimepicker span .glyphicon {
   border: 0;
   top: 0;
-  height: 28px;
+  width: 30px;
+  line-height: 28px;
 }
 span.ui-icon {
   font-family: "icomoon";
@@ -313,4 +321,7 @@ form {
 }
 .table-condensed td {
   cursor: pointer;
+}
+.modal .icon-8 {
+  font-size: 20px;
 }

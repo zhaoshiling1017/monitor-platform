@@ -39,12 +39,12 @@
                 </div>
                 <div class="form-inline">
                     <label>上传时间：</label>
-                    <div class="input-group datetimepicker date-picker datetime">
+                    <div class="input-group datetimepicker start_time">
                         <input type="text" id="timeon" name="beginTime">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                     </div>
                     <span>至</span>
-                    <div class="input-group datetimepicker date-picker datetime">
+                    <div class="input-group datetimepicker end_time">
                         <input type="text" id="timeoff" name="finishTime">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                     </div>

@@ -61,5 +61,19 @@
         </div>
     </div>
 </div>
+<!-- 查看大图 -->
+
+<script>
+$(function(){
+	$(".form-inline.lang>img").click(function(){
+		var src = $(this).attr("src");
+		var str = '<div id="bigImg">';
+		str += '<a class="icon-delete" href="javascript:;"></a>';
+		str += '<img src="'+ src +'">';
+		str += '</div>';
+		$("body",parent.document).append(str);
+	})
+})
+</script>
 </body>
 </html>

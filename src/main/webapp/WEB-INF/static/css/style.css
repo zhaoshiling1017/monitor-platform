@@ -86,33 +86,6 @@ a:hover, a:focus, a:active {
     color: #398ef8;
 }
 
-/* .table-stripe */
-.table-stripe tbody tr:nth-child(even),.ui-jqgrid-btable tr:nth-child(odd){
-    background: #f7f7f7;
-}
-.ui-jqgrid-btable tbody tr{border:0;}
-/* .table-body-only */
-.table-body-only tbody tr:nth-child(even){
-    background-color: #f7f7f7;
-}
-
-.table-bordered,.ui-jqgrid-htable {
-    border-top: 1px solid #eee;
-}
-
-.table-bordered tr {
-    border-bottom: 1px solid #eee;
-}
-
-.table-bordered tbody tr:last-child {
-    border: 0;
-}
-
-.table.align-left tr th,
-.table.align-left tr td {
-    text-align: left;
-}
-
 .icon {
     display: inline-block;
     font-size: 10px;
@@ -274,6 +247,7 @@ a:hover, a:focus, a:active {
     outline: none;
     padding: 5px 0;
     text-indent: 0.5em;
+    width:400px;
 }
 
 /* 时间起止中的"至" */
@@ -301,11 +275,6 @@ a:hover, a:focus, a:active {
 .padding-5 {
     padding: 5px;
     overflow: auto;
-}
-
-.btn-group {
-    float: right;
-    padding: 5px 0;
 }
 
 .info {
@@ -484,48 +453,6 @@ a:hover, a:focus, a:active {
     color: #ffffff;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
-
-.datetimepicker {
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    border-radius: 0;
-    direction: ltr;
-}
-.date-picker input[type='text'] {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    float: left;
-    border: 1px solid #CCC;
-    outline: 0;
-    width: 120px;
-    height: 30px;
-    padding: 0;
-    text-indent: 0.5em;
-}
-
-.date-picker i {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    text-align: center;
-    border: 1px solid #CCC;
-    border-left: 0;
-}
-
-.date-picker em {
-    cursor: pointer;
-}
-
-.date-picker .icon-calendar-alt-stroke {
-    margin: 0;
-    opacity: 1;
-    color: inherit;
-    font-size: inherit;
-}
 /* jqgrid */
 .table tbody .jqgfirstrow{height:0;}
 .ui-jqgrid-resize{display:none;}
@@ -547,8 +474,8 @@ a:hover, a:focus, a:active {
 	.page-left input{margin-left:10px;margin-top:6px;}
 	.page-left a{padding:5px 12px;border: 1px solid #CCC;color: #989898;margin-left: 10px;}
 /* 权限配置 */
-.permission{width:100%;margin-top:10px;}
-	.thead{padding:0 10px;height:40px;line-height:40px;background:#f7f7f7;border-top:1px solid #eee;}
+.permission{margin:10px;}
+	.thead{padding:0 10px;height:40px;line-height:40px;background:#e5e5e5;border-top:5px solid #5581d6;}
 		.thead span{float:left;width:30%;color:#888;font-weight:bold;}
 	.tbody{padding:0 10px;}
 		.tbody .list{border-bottom:1px solid #eee;}
@@ -563,3 +490,24 @@ a:hover, a:focus, a:active {
 				.tbody .list li ul input{margin-left:20px;}
 				.tbody .list li>label,.tbody .list li>span{width:50%;}
 				.tbody .list li span{line-height:36px;color:#888;}
+/*
+弹框按钮  */
+.btn-group {
+  float: right;
+  padding: 5px 0;
+}
+.btn-group [class^="btn-"]{
+    float: left;
+    width:80px;
+    line-height:30px;
+    border-radius:3px;
+    text-align: center;
+  }
+.btn-group .btn-save{
+    background: #5581d6;
+    border:1px solid #5581d6;
+    color: #fff;
+  }
+.btn-group .btn-cancel{
+    border:1px solid #dcdcdc;
+  }

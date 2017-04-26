@@ -8,6 +8,12 @@ $(function(){
 	        format: 'YYYY-MM-DD'
 	    })
 	}
+	//组时间插件触发 dp.change事件
+    $(".start_time,.end_time").on("dp.change", function (event) {
+    	console.log(111)
+        var obj = $(this).siblings(".datetimepicker");
+        $(event.target).is(".end_time") ? obj.data("DateTimePicker").maxDate($(this).find("input").val()) : obj.data("DateTimePicker").minDate($(this).find("input").val());
+    })
     resize();
     $(window).resize(function(){
         resize();
@@ -100,7 +106,10 @@ $(function(){
 		}
 		
 	})
-	
+	//模态框中的取消按钮事件
+	$(".modal .btn-cancel").click(function(){
+		$(".modal").hide();
+	})
 });
 
 //选中所有列表项

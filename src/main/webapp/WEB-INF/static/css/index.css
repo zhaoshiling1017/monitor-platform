@@ -500,7 +500,7 @@ iframe {
     border-bottom: 1px solid #dddddd;
 }
 .modal-header .icon-delete{
-    color:#cacaca;
+    color:#c0272d;
     font-size: 18px;
 }
 .modal-header h3{
@@ -645,3 +645,31 @@ form .row{position:relative;padding-bottom:14px;}
 .jqgrow.orange,.table tbody .orange{background:#fcf2ca !important;}
 .bootstrap-datetimepicker-widget table td span{float:left;}
 .bootstrap-datetimepicker-widget .datepicker-decades span.decade[data-action="selectDecade"]{width:auto !important;height:auto;padding:0 23px;line-height:54px !important;}
+/*查看大图*/
+#bigImg{
+	width:100%;
+  	height:100%;
+	position: fixed;
+	z-index:10;
+	top:0;
+	left:0;
+	background:rgba(0,0,0,0.5);
+	text-align: center;
+}
+#bigImg img{
+    width:60%;
+    margin-top:100px;
+  }
+#bigImg .icon-delete{
+	width:30px;
+	height:30px;
+	border-radius:50%;
+	color:#fff;
+	line-height:30px;
+	text-align:center;
+    position: absolute;
+    right:20px;
+    top:20px;
+    background: #c0272d;
+    font-size:20px;
+  }

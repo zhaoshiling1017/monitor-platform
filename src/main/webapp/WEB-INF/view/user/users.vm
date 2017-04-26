@@ -21,7 +21,6 @@
     <div class="panel">
         <p class="heading">人员管理
 		    <a href="javascript:void(0);" class="btn-export" onclick="getTableData()">查询</a>
-		    <a href="javascript:void(0);" class="btn-export">刷新</a>
 		    #if($shiro.hasPermission("人员管理-新增"))
             <a href="javascript:void(0);" class="btn-search" data-modal="people-add">新增</a>
 			#end
@@ -139,8 +138,8 @@
             </div>
             <div class="modal-footer  clear">
                 <div class="btn-group">
-                    <a href="javascript:;" class="btn btn-warn" onclick="addRole()">保存</a>
-                    <a href="javascript:void(0)" class="btn btn-primary disappear-modal">取消</a>
+                    <a href="javascript:;" class="btn-save" onclick="addRole()">保存</a>
+                    <a href="javascript:void(0)" class="btn-cancel">取消</a>
                 </div>
             </div>
         </form>
@@ -219,8 +218,8 @@
             </div>
             <div class="modal-footer  clear">
                 <div class="btn-group">
-                    <a href="javascript:void(0)" class="btn btn-warn" onclick="editRole()">保存</a>
-                    <a href="javascript:void(0)" class="btn btn-primary disappear-modal" >取消</a>
+                    <a href="javascript:void(0)" class="btn-save" onclick="editRole()">保存</a>
+                    <a href="javascript:void(0)" class="btn-cancel" >取消</a>
                 </div>
             </div>
         </form>

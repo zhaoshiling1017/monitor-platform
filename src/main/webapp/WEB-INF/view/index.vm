@@ -114,7 +114,7 @@
         <div class="modal-dialog">
             <div class="modal-header">
                 <h3 class="left weight-bold blue-font">修改密码</h3>
-                <a href="javascript:void(0)" class="icon-delete right"></a>
+                <a href="javascript:void(0)" class="icon-delete right" data-dismiss="modal" aria-label="Close"></a>
             </div>
 			<form id="passwordEditForm">
                 <div class="modal-body min-height">
@@ -136,8 +136,8 @@
                 </div>
                 <div class="modal-footer  clear">
                     <div class="btn-group">
-                        <a href="javascript:void(0)" class="btn btn-warn" onclick="passwordUpdate()">保存</a>
-                        <a href="javascript:void(0)" class="btn btn-primary disappear-modal" >取消</a>
+                        <a href="javascript:void(0)" class="btn-save" onclick="passwordUpdate()">保存</a>
+                        <a href="javascript:void(0)" class="btn-cancel">取消</a>
                     </div>
                 </div>
 			</form>
@@ -178,6 +178,12 @@
 	function editPassword(){
 		$("#password-edit").show();
 	}
+	
+	//关闭大图
+    $(document).on("click","#bigImg .icon-delete",function(){
+    	console.log(111)
+    	$(this).closest("#bigImg").remove();
+    })
 </script>
 </body>
 </html>
