@@ -168,5 +168,18 @@
         </div>
     </div>
 </div>
+<script>
+$(function(){
+	//查看原图
+	$(".tab-pane li>img").click(function(){
+		var src = $(this).attr("src");
+		var str = '<div id="showOriginal">';
+		str += '<a class="icon-delete" href="javascript:;"></a>';
+		str += '<img src="'+ src +'">';
+		str += '</div>';
+		$("body",parent.document).append(str);
+	})
+})
+</script>
 </body>
 </html>

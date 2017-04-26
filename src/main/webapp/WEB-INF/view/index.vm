@@ -180,9 +180,8 @@
 	}
 	
 	//关闭大图
-    $(document).on("click","#bigImg .icon-delete",function(){
-    	console.log(111)
-    	$(this).closest("#bigImg").remove();
+    $(document).on("click","#bigImg .icon-delete,#showOriginal .icon-delete",function(){
+    	$(this).closest("div").remove();
     })
 </script>
 </body>

@@ -61,8 +61,6 @@
         </div>
     </div>
 </div>
-<!-- 查看大图 -->
-
 <script>
 $(function(){
 	$(".form-inline.lang>img").click(function(){

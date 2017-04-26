@@ -20,7 +20,7 @@
 <div class="wrapper wrapperBg">
     <div class="panel">
         <p class="heading">人员管理
-		    <a href="javascript:void(0);" class="btn-export" onclick="getTableData()">查询</a>
+		    <a href="javascript:void(0);" class="btn-search" onclick="getTableData()">查询</a>
 		    #if($shiro.hasPermission("人员管理-新增"))
             <a href="javascript:void(0);" class="btn-search" data-modal="people-add">新增</a>
 			#end

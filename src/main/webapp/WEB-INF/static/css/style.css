@@ -209,9 +209,10 @@ a:hover, a:focus, a:active {
 .clear {
     clear: both;
 }
-
+.form-inline>*{
+	float:left;
+}
 .form-inline label {
-    float: left;
     width: 80px;
     height: 30px;
     line-height: 30px;
@@ -222,7 +223,6 @@ a:hover, a:focus, a:active {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    float: left;
     border: 1px solid #CCC;
     outline: 0;
     width: 120px;
@@ -232,7 +232,6 @@ a:hover, a:focus, a:active {
 }
 
 .form-inline select {
-    float: left;
     width: 120px;
     height: 30px;
     line-height: 30px;
@@ -490,8 +489,7 @@ a:hover, a:focus, a:active {
 				.tbody .list li ul input{margin-left:20px;}
 				.tbody .list li>label,.tbody .list li>span{width:50%;}
 				.tbody .list li span{line-height:36px;color:#888;}
-/*
-弹框按钮  */
+/* 弹框按钮  */
 .btn-group {
   float: right;
   padding: 5px 0;
