@@ -167,70 +167,6 @@ a:hover, a:focus, a:active {
 
 /* button */
 
-a.list-mani {
-    padding: 5px 12px;
-    border: 1px solid #CCC;
-    color: #989898;
-    margin-left: 10px;
-}
-
-.btn-icon {
-    display: inline-block;
-}
-
-.btn-icon i {
-    font-style: normal;
-    float: left;
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    text-align: center;
-    background-color: #1f76dd;
-    color: #FFF;
-}
-
-.btn-icon.danger i {
-    background-color: #FF4431;
-}
-
-.btn-icon span {
-    display: inline-block;
-    width: 50px;
-    height: 30px;
-    line-height: 30px;
-    text-align: center;
-    background-color: #3a90f7;
-    color: #FFF;
-}
-
-.btn-icon.danger span {
-    background-color: #FF944D;
-}
-
-.panel-head {
-    padding-left: 5px;
-    overflow: auto;
-    height: 36px;
-    line-height: 36px;
-    background-color: #d3e5f9;
-}
-
-.panel-head.inform {
-    background-color: #ffc05f;
-}
-
-.panel-head h4 {
-    float: left;
-    -webkit-margin-before: 0;
-    -webkit-margin-after: 0;
-    -webkit-margin-start: 0px;
-    -webkit-margin-end: 0px;
-    font-weight: bold;
-}
-
-.panel-head a {
-    float: right;
-}
 
 .panel-table .panel-head a {
     height: 0;
@@ -295,22 +231,6 @@ a.list-mani {
     color: #3a90f7;
     border-radius: 0;
     outline: none;
-}
-
-a.btn-inform {
-    width: 100px;
-    height: 30px;
-    line-height: 30px;
-    color: #FFF;
-    background-color: #ff9120;
-    float: left;
-    margin-right: 10px;
-    text-align: center;
-}
-
-.form-inline {
-    /*overflow: auto;*/
-    /*padding: 5px 0;*/
 }
 
 .clear {
@@ -418,13 +338,6 @@ a.btn-inform {
 	color:#333;
 	margin-right:0;
 }
-
-/* about datetimepicker */
-/**, *:before, *:after {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}*/
 
 .input-group {
     position: relative;
@@ -577,27 +490,6 @@ a.btn-inform {
     -moz-border-radius: 0;
     border-radius: 0;
     direction: ltr;
-}
-
-.dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 1000;
-    display: block !important;
-    float: left;
-    min-width: 160px;
-    padding: 5px 0;
-    margin: 2px 0 0;
-    font-size: 14px;
-    list-style: none;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border: 1px solid rgba(0,0,0,0.15);
-    border-radius: 0;
-    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,0.175);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.175);
-    background-clip: padding-box;
 }
 .date-picker input[type='text'] {
     -moz-box-sizing: border-box;
