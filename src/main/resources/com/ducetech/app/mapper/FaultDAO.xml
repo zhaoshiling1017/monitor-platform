@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.ducetech.app.dao.FaultDAO">
+    <resultMap type="com.ducetech.app.model.Fault" id="faultMap">
+        <id column="fault_id" property="faultId"/>
+        <result column="line" property="line"/>
+        <result column="car_number" property="carNumber"/>
+        <result column="bow_position" property="bowPosition"/>
+        <result column="interval" property="interval"/>
+        <result column="env_temperature" property="envTemperature"/>
+        <result column="eq_temperature" property="eqTemperature"/>
+        <result column="type" property="type"/>
+        <result column="level" property="level"/>
+        <result column="image_path" property="imagePath"/>
+        <result column="fault_info" property="faultInfo"/>
+        <result column="device_num" property="deviceNum"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="is_deleted" property="isDeleted"/>
+    </resultMap>
+
+
+
+    <!-- 对缺陷记录的通用查询  -->
+    <select id="selectFault" parameterType="com.ducetech.app.model.Fault" resultMap="faultMap">
+        select fault_id, line, car_number,  bow_position, `interval`, env_temperature, eq_temperature, `type`, `level`, image_path, fault_info, created_at, device_num, is_deleted from t_fault where is_deleted = 0
+        <if test="carNumber!=null and carNumber!=''">
+            and car_number=#{carNumber}
+        </if>
+        <if test="type!=null and type!=''">
+            and type like CONCAT(#{type}, '%')
+        </if>
+        <if test="beginTime!=null and beginTime!=''">
+            and created_at &gt;= STR_TO_DATE(#{beginTime}, '%Y-%m-%d %H:%i:%s')
+        </if>
+        <if test="endTime!=null and endTime!=''">
+            and created_at &lt;= STR_TO_DATE(#{endTime}, '%Y-%m-%d %H:%i:%s')
+        </if>
+
+    </select>
+
+    <select id="queryById" resultMap="faultMap">
+      select fault_id, line, car_number,  bow_position, `interval`, env_temperature, eq_temperature, `type`, `level`, image_path, fault_info, created_at, device_num, is_deleted from t_fault where is_deleted = 0 AND fault_id = #{faultId}
+    </select>
+</mapper>

@@ -15,9 +15,8 @@ public class CustomCredentialsMatcher extends SimpleCredentialsMatcher {
 		User user = (User)info.getPrincipals().getPrimaryPrincipal();
 		Object tokenCredentials = Digests.md5Hash(String.valueOf(usertoken.getPassword()), user.getSecretKey());
 		//Object tokenCredentials = Encrypt.md5(String.valueOf(usertoken.getPassword()),"cb7e52304f0d11e6965c00ff2c2e2b3f");  
-		Object accountCredentials = getCredentials(info);  
-
-		//将密码加密与系统加密后的密码校验，内容一致就返回true,不一致就返回false  
+		Object accountCredentials = getCredentials(info);
+		//将密码加密与系统加密后的密码校验，内容一致就返回true,不一致就返回false
 		return equals(tokenCredentials, accountCredentials);
 	}
 }

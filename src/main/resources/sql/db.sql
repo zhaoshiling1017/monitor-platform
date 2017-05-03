@@ -1,7 +1,6 @@
 /*!40101 SET NAMES utf8 */;
 
 DROP TABLE IF EXISTS `t_department`;
-
 CREATE TABLE `t_department` (
   `department_id` int(11) NOT NULL AUTO_INCREMENT,
   `department_name` varchar(30) DEFAULT NULL,
@@ -32,7 +31,6 @@ values
 
 
 DROP TABLE IF EXISTS `t_permission`;
-
 CREATE TABLE `t_permission` (
   `permission_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '权限ID',
   `name` varchar(50) DEFAULT NULL COMMENT '菜单、连接、按钮权限',
@@ -61,7 +59,6 @@ INSERT INTO `t_permission` VALUES ('11', '停用', '角色管理-停用', '4', '
 
 
 DROP TABLE IF EXISTS `t_role`;
-
 CREATE TABLE `t_role` (
   `role_id` int(11) NOT NULL AUTO_INCREMENT,
   `role_name` varchar(30) DEFAULT NULL,
@@ -77,7 +74,6 @@ INSERT INTO `t_role` (`role_id`, `role_name`, `comment`, `creator_id`, `created_
 
 
 DROP TABLE IF EXISTS `t_role_permission`;
-
 CREATE TABLE `t_role_permission` (
   `role_id` int(11) NOT NULL,
   `permission_id` int(11) NOT NULL
@@ -97,7 +93,6 @@ INSERT INTO `t_role_permission` VALUES ('1', '11');
 
 
 DROP TABLE IF EXISTS `t_user`;
-
 CREATE TABLE `t_user` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `login_name` varchar(30) NOT NULL COMMENT '登录名',
@@ -121,7 +116,6 @@ INSERT INTO `t_user` (`user_id`, `login_name`, `password`, `secret_key`, `employ
 
 
 DROP TABLE IF EXISTS `t_user_role`;
-
 CREATE TABLE `t_user_role` (
   `user_id` int(11) NOT NULL,
   `role_id` int(11) NOT NULL
@@ -131,19 +125,42 @@ INSERT INTO `t_user_role` (`user_id`, `role_id`) VALUES ('1', '1');
 
 
 DROP TABLE IF EXISTS `t_fault`;
-
 CREATE TABLE `t_fault` (
-  `fault_id` int(11) NOT NULL,
+  `fault_id` int(11) NOT NULL AUTO_INCREMENT,
   `line` varchar(32),
   `car_number` varchar(20),
   `bow_position` varchar(255),
   `interval` varchar(255),
   `env_temperature` varchar(32),
   `eq_temperature` varchar(32),
-  `f_type` varchar(12),
-  `f_level` varchar(10),
+  `type` varchar(12),
+  `level` varchar(10),
   `image_path` varchar(255),
   `fault_info` text,
   `created_at` datetime,
+  `device_num` varchar(32),
+  `is_deleted` int(1),
   PRIMARY KEY (`fault_id`)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `t_fault`(`line`, `car_number`,  `bow_position`, `interval`, `env_temperature`, `eq_temperature`, `type`, `level`, `image_path`, `fault_info`, `created_at`, `device_num`, `is_deleted`) values(
+    '6号线', '1号车', '1001-1002', '1-2', '28', '38', '000001', '1级', '/home/lenzhao/tmp/play.jpg', '测试数据', now(), '1', 0
+);
+
+
+DROP TABLE IF EXISTS `t_dictionary`;
+CREATE TABLE `t_dictionary` (
+  `dic_id` int(11) NOT NULL AUTO_INCREMENT,
+  `node_code` varchar(20),
+  `node_name` varchar(64),
+  `node_order` int(2),
+  `creator_id` int(11),
+  `updator_id` int(11),
+  `created_at` datetime,
+  `updated_at` datetime,
+  `is_deleted` int(1) DEFAULT 0,
+  PRIMARY KEY (`dic_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `t_dictionary` (`node_code`, `node_name`, `node_order`, `creator_id`, `updator_id`, `created_at`, `updated_at`, `is_deleted`) values ('000001', '一级缺陷', 1, 1, 1, now(), now(), 0);
+

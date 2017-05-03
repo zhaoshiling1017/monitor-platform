@@ -37,5 +37,7 @@
     <toolbox scope="application">
     	<!-- 引用类中通过注解定义了默认的key,所以在此处不定义key -->
         <tool class="com.ducetech.framework.support.service.Permission"/>
+        <!--日期格式化-->
+        <tool class="org.apache.velocity.tools.generic.DateTool" />
     </toolbox>
 </tools>

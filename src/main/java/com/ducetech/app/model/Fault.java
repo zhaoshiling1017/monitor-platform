@@ -28,14 +28,23 @@ public class Fault extends BaseModel implements Serializable {
     //设备温度
     private String eqTemperature;
     //缺陷类型
-    private String fType;
+    private String type;
+    private Dictionary dic;
     //缺陷级别
-    private String fLevel;
+    private String level;
     //图片路径
     private String imagePath;
     //缺陷信息
     private String faultInfo;
     //时间
     private Date createdAt;
+    //机位号
+    private String deviceNum;
+    //是否删除
+    private int isDeleted;
+
+
+    private String beginTime;
+    private String endTime;
 
 }

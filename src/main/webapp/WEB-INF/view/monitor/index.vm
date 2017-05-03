@@ -20,7 +20,7 @@
     	</p>
     	<form class="control-condition">
             <div class="form-inline">
-                <label>上传时间：</label>
+                <label>创建时间：</label>
                 <div class="input-group datetimepicker start_time">
                     <input type="text" id="timeon" name="beginTime">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>

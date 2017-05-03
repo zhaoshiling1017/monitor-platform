@@ -2,6 +2,8 @@
  * Created by chen yun  on 2016/8/9.
  */
 $(function(){
+    var data = document.getElementById("nodes").value;
+    var zNodes = JSON.parse(data);
     $.fn.zTree.init($("#defectTree"), setting, zNodes);
 })
 
@@ -12,7 +14,12 @@ var setting = {
         selectedMulti: true
     },
     edit: {
-        enable: true
+        enable: true,
+        editNameSelectAll: true,
+        showRemoveBtn: showRemoveBtn,
+        showRenameBtn: showRenameBtn,
+        removeTitle: '删除',
+        renameTitle: '编辑'
     },
     data: {
         simpleData: {
@@ -24,23 +31,10 @@ var setting = {
         beforeRemove: beforeRemove,
         beforeRename: beforeRename,
         onRemove: onRemove,
-        onRename: onRename
+        onRename: onRename,
+        onClick: onClick
     }
 };
-var zNodes =[
-    { id:1, pId:0, name:"父节点 1", open:true},
-    { id:11, pId:1, name:"叶子节点 1-1"},
-    { id:12, pId:1, name:"叶子节点 1-2"},
-    { id:13, pId:1, name:"叶子节点 1-3"},
-    { id:2, pId:0, name:"父节点 2", open:true},
-    { id:21, pId:2, name:"叶子节点 2-1"},
-    { id:22, pId:2, name:"叶子节点 2-2"},
-    { id:23, pId:2, name:"叶子节点 2-3"},
-    { id:3, pId:0, name:"父节点 3", open:true},
-    { id:31, pId:3, name:"叶子节点 3-1"},
-    { id:32, pId:3, name:"叶子节点 3-2"},
-    { id:33, pId:3, name:"叶子节点 3-3"}
-];
 
 
 var log, className = "dark";
@@ -60,30 +54,79 @@ function beforeRemove(treeId, treeNode) {
     showLog("[ "+getTime()+" beforeRemove ]&nbsp;&nbsp;&nbsp;&nbsp; " + treeNode.name);
     var zTree = $.fn.zTree.getZTreeObj("defectTree");
     zTree.selectNode(treeNode);
-    return confirm("确认删除 节点 -- " + treeNode.name + " 吗？");
+    var result = false;
+    var nodeId = treeNode.id;
+    if(!confirm("确认删除 节点 -- " + treeNode.name + " 吗？")){
+        return result;
+    }
+    $.ajax({
+        type: 'GET',
+        url: "dics/" + nodeId + "/beforeDel",
+        async: false,
+        data: null,
+        dataType: "json",
+        success: function(rs) {
+            if (rs.data == 1) {
+                result = true;
+            } else {
+                initAlert(0, rs.message);
+            }
+        }
+    });
+    return result;
 }
 function onRemove(e, treeId, treeNode) {
+    var nodeId = treeNode.id;
     showLog("[ "+getTime()+" onRemove ]&nbsp;&nbsp;&nbsp;&nbsp; " + treeNode.name);
+    $.ajax({
+        type: 'DELETE',
+        url: "dics/" + nodeId,
+        async: false,
+        data: null,
+        dataType: "json",
+        success: function(result) {
+            alert(result.message);
+            //initAlert(1, result.message);
+        }
+    });
 }
 function beforeRename(treeId, treeNode, newName, isCancel) {
     className = (className === "dark" ? "":"dark");
     showLog((isCancel ? "<span style='color:red'>":"") + "[ "+getTime()+" beforeRename ]&nbsp;&nbsp;&nbsp;&nbsp; " + treeNode.name + (isCancel ? "</span>":""));
     if (newName.length == 0) {
-        alert("节点名称不能为空.");
-        var zTree = $.fn.zTree.getZTreeObj("treeDemo");
-        setTimeout(function(){zTree.editName(treeNode)}, 10);
+        setTimeout(function() {
+            var zTree = getTree();
+            zTree.cancelEditName();
+            alert("节点名称不能为空.");
+        }, 0);
         return false;
     }
     return true;
 }
 function onRename(e, treeId, treeNode, isCancel) {
     showLog((isCancel ? "<span style='color:red'>":"") + "[ "+getTime()+" onRename ]&nbsp;&nbsp;&nbsp;&nbsp; " + treeNode.name + (isCancel ? "</span>":""));
+    $.ajax({
+        type: 'POST',
+        url: "dics/" + treeNode.id,
+        data: {_method:"PUT",nodeName:treeNode.name},
+        dataType: "json",
+        success: function(data) {
+        }
+    });
 }
 function showRemoveBtn(treeId, treeNode) {
-    return !treeNode.isFirstNode;
+    if (treeNode.id=='000') {
+        return false;
+    } else {
+        return true;
+    }
 }
 function showRenameBtn(treeId, treeNode) {
-    return !treeNode.isLastNode;
+    if(treeNode.id=='000'){
+        return false;
+    }else{
+        return true;
+    }
 }
 function showLog(str) {
     if (!log) log = $("#log");
@@ -104,20 +147,67 @@ function getTime() {
 var newCount = 1;
 function addHoverDom(treeId, treeNode) {
     var sObj = $("#" + treeNode.tId + "_span");
+    var str = sObj.closest("li").attr("class");
+    var level = str.substring(5,str.length);
     if (treeNode.editNameFlag || $("#addBtn_"+treeNode.tId).length>0) return;
-    var addStr = "<span class='button add' id='addBtn_" + treeNode.tId
-        + "' title='add node' onfocus='this.blur();'></span>";
-    sObj.after(addStr);
+    if(level<5){ //限制层级在小于四级的时候显示添加按钮
+        var addStr = "<span class='button add' id='addBtn_" + treeNode.tId
+            + "' title='新增' onfocus='this.blur();'></span>";
+        sObj.after(addStr);
+    }
     var btn = $("#addBtn_"+treeNode.tId);
-    if (btn) btn.bind("click", function(){
-        var zTree = $.fn.zTree.getZTreeObj("defectTree");
-        zTree.addNodes(treeNode, {id:(100 + newCount), pId:treeNode.id, name:"new node" + (newCount++)});
+    if (btn) btn.bind("click", function() {
+        saveNode(treeNode);
         return false;
     });
 };
+
+/*保存新的节点*/
+function saveNode(parentNode){
+    var zTree = getTree();
+    var _nodeName = "新节点";
+    $.ajax({
+        type: 'POST',
+        url: "dics",
+        data: {pId:parentNode.id,name:_nodeName},
+        dataType: "json",
+        success: function(data) {
+            var newCode = {id:data.nodeCode,pId:parentNode.id,name:_nodeName};
+            zTree.addNodes(parentNode,newCode);
+        }
+    });
+}
+
+function getTree(){
+    return $.fn.zTree.getZTreeObj("defectTree");
+}
+
 function removeHoverDom(treeId, treeNode) {
     $("#addBtn_"+treeNode.tId).unbind().remove();
-};
+}
+
+/*单击节点显示节点详情*/
+function onClick(e,treeId,treeNode) {
+    show(treeNode);
+}
+
+/*右侧区域显示*/
+function show(treeNode) {
+    $('#nodeCode').val(treeNode.id);
+    $("#timeon").val("");
+    $("#timeoff").val("");
+    $("#carNumber").val("");
+    getTableData();
+    //formSub();
+}
+
+/*function formSub(){
+    var _params = $('#queryFormDic').serializeArray();
+    $.get('/dics/detail',_params,function(data){
+        $('.dicdata').html(data);
+    });
+}*/
+
 function selectAll() {
     var zTree = $.fn.zTree.getZTreeObj("defectTree");
     zTree.setting.edit.editNameSelectAll =  $("#selectAll").attr("checked");

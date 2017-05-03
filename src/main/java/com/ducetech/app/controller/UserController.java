@@ -75,7 +75,7 @@ public class UserController extends BaseController {
 				subject.getSession().setAttribute("DT_LOGIN_USER", user);
 				CookieUtil.setCookie(response, "", user.getUserId());
 			}catch(Exception ex){
-				//ex.printStackTrace();
+				logger.error(ex.getMessage(), ex);
 				modelMap.addFlashAttribute("message", "账号或密码错误");
 				return "redirect:/login";
 			}

@@ -37,6 +37,8 @@
 		<mapper resource="com/ducetech/app/mapper/RoleDAO.xml"/>
 		<mapper resource="com/ducetech/app/mapper/DepartmentDAO.xml"/>
 		<mapper resource="com/ducetech/app/mapper/PermissionDAO.xml"/>
+		<mapper resource="com/ducetech/app/mapper/DictionaryDAO.xml"/>
+		<mapper resource="com/ducetech/app/mapper/FaultDAO.xml"/>
 	</mappers>
 
 </configuration>

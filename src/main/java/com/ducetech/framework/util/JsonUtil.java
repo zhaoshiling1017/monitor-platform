@@ -44,9 +44,11 @@ public class JsonUtil {
     }
 
     public static void main(String[] args) {
+        List<Map<String, Object>> lists = Lists.newArrayList();
         Map<String, Object> data = Maps.newHashMap();
         data.put("id", 123);
         data.put("time", DateUtil.formatTime(DateUtil.currentDate()));
-        System.out.println(JsonUtil.writeValueAsString(data));
+        lists.add(data);
+        System.out.println(JsonUtil.writeValueAsString(lists));
     }
 }
