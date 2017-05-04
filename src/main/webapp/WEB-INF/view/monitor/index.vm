@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>角色管理</title>
+    <title>在线实时检测</title>
     #parse('common/path-js.vm')
     <link href="$path/static/css/style.css" rel="stylesheet">
     <link href="$path/static/css/font.css" rel="stylesheet">
@@ -27,7 +27,7 @@
                 </div>
                 <span>至</span>
                 <div class="input-group datetimepicker end_time">
-                    <input type="text" id="timeoff" name="finishTime">
+                    <input type="text" id="timeoff" name="endTime">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                 </div>
             </div>
