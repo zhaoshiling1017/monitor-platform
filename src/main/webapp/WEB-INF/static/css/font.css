@@ -28,10 +28,10 @@
   content: "\e908";
 }
 
-.icon-1:before {
+.icon-9:before {
   content: "\e900";
 }
-.icon-2:before {
+.icon-10:before {
   content: "\e901";
 }
 .icon-3:before {
@@ -51,6 +51,12 @@
 }
 .icon-8:before {
   content: "\e907";
+}
+.icon-1:before {
+  content: "\e908";
+}
+.icon-2:before {
+  content: "\e909";
 }
 .icon-first:before {
   content: "\ea21";
