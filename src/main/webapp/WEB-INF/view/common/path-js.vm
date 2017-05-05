@@ -8,11 +8,11 @@
 <script src="$path/static/js/alert.js" type="text/javascript"></script>
 <script src="$path/static/js/bootstrap.js" type="text/javascript"></script>
 <script type="text/javascript">
-    jQuery.prototype.serializeObject=function(){
-        var obj=new Object();
-        $.each(this.serializeArray(),function(index,param){
-            if(!(param.name in obj)){
-                obj[param.name]=param.value;
+    jQuery.prototype.serializeObject = function() {
+        var obj = new Object();
+        $.each(this.serializeArray(), function(index,param) {
+            if (!(param.name in obj)) {
+                obj[param.name] = param.value;
             }
         });
         return obj;

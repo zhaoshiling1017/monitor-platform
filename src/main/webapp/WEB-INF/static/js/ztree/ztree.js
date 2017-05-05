@@ -2,8 +2,8 @@
  * Created by chen yun  on 2016/8/9.
  */
 $(function(){
-	Alert("danger", "111");
 	if($("#nodes").length>0){
+        Alert("danger", "节点名称不能为空.");
 		var data = $("#nodes").val();
 	    var zNodes = JSON.parse(data);
 	    $.fn.zTree.init($("#defectTree"), setting, zNodes);
@@ -127,7 +127,12 @@ function onRemove(e, treeId, treeNode) {
         data: null,
         dataType: "json",
         success: function(result) {
-            alert(result.message);
+            if (result.data == 0) {
+                Alert("fail", result.message);
+            } else {
+                Alert("success", result.message);
+            }
+
         }
     });
 }
@@ -138,7 +143,7 @@ function beforeRename(treeId, treeNode, newName, isCancel) {
         setTimeout(function() {
             var zTree = getTree();
             zTree.cancelEditName();
-            alert("节点名称不能为空.");
+            Alert("danger", "节点名称不能为空.");
         }, 0);
         return false;
     }
@@ -239,15 +244,7 @@ function show(treeNode) {
     $("#timeoff").val("");
     $("#carNumber").val("");
     getTableData();
-    //formSub();
 }
-
-/*function formSub(){
-    var _params = $('#queryFormDic').serializeArray();
-    $.get('/dics/detail',_params,function(data){
-        $('.dicdata').html(data);
-    });
-}*/
 
 function selectAll() {
     var zTree = $.fn.zTree.getZTreeObj("defectTree");

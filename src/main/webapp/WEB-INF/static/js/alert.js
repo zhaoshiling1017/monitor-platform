@@ -1,7 +1,7 @@
 function Alert(status, message) {
 	//status:传字符串，三个状态：fail、success、danger
 	//danger有确定和取消两个按钮，另外两个状态都只有一个按钮
-    if(status == undefined){
+    if (status == undefined) {
         status = 'success';
     }
     var str ='<div class="Alert">';
@@ -30,20 +30,20 @@ function Alert(status, message) {
         obj.find(".alert-dialog").append(btn);
         mes.text("确定删除这条数据？");
     }
-    if(message != undefined){
+    if (message != undefined) {
         mes.text(message);
     }
     //点击取消
-    $(document).on("click",".Alert .btn-cancel",function(){
+    $(document).on("click",".Alert .btn-cancel",function() {
         close();
         return false;
     })
-    if(!($(".Alert").is($(".danger")))){
+    if (!($(".Alert").is($(".danger")))) {
     	setTimeout(function(){
         	close();
         },800)
     }
-    function close(){
+    function close() {
         $(".Alert").fadeOut(300);
         mask.fadeOut(300);
     }
