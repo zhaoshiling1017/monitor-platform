@@ -2,7 +2,6 @@
  * Created by chen yun  on 2016/8/9.
  */
 $(function(){
-	Alert("danger", "111");
 	if($("#nodes").length>0){
 		var data = $("#nodes").val();
 	    var zNodes = JSON.parse(data);

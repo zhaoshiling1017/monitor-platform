@@ -430,14 +430,20 @@ form {
   margin-right: 10px;
 }
 .Alert.success .alert-mes span {
-  color: #FF921E;
+  color: #7AC843;
 }
 .Alert.success .alert-mes span:before {
-  content: "\e924";
+  content: "\e900";
 }
 .Alert.fail .alert-mes span {
   color: #EC1C24;
 }
 .Alert.fail .alert-mes span:before {
-  content: "\e922";
+  content: "\e907";
+}
+.Alert.danger .alert-mes span {
+  color: #FF921E;
+}
+.Alert.danger .alert-mes span:before {
+  content: "\e901";
 }
