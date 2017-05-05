@@ -2,9 +2,51 @@
  * Created by chen yun  on 2016/8/9.
  */
 $(function(){
-    var data = document.getElementById("nodes").value;
-    var zNodes = JSON.parse(data);
-    $.fn.zTree.init($("#defectTree"), setting, zNodes);
+	Alert("danger", "111");
+	if($("#nodes").length>0){
+		var data = $("#nodes").val();
+	    var zNodes = JSON.parse(data);
+	    $.fn.zTree.init($("#defectTree"), setting, zNodes);
+	}
+    //模态框中的树结构
+    var zNodes2 =[
+         		{id:1, pId:0, name:"[core] 基本功能 演示", open:true},
+         		{id:101, pId:1, name:"最简单的树 --  标准 JSON 数据", file:"core/standardData"},
+         		{id:102, pId:1, name:"最简单的树 --  简单 JSON 数据", file:"core/simpleData"},
+         		{id:103, pId:1, name:"不显示 连接线", file:"core/noline"},
+         		{id:104, pId:1, name:"不显示 节点 图标", file:"core/noicon"},
+         		{id:105, pId:1, name:"自定义图标 --  icon 属性", file:"core/custom_icon"},
+         		{id:106, pId:1, name:"自定义图标 --  iconSkin 属性", file:"core/custom_iconSkin"},
+         		{id:107, pId:1, name:"自定义字体", file:"core/custom_font"},
+         	];
+    var setting2 = {
+    		view: {
+    			dblClickExpand: false,
+    			showLine: true,
+    			selectedMulti: false
+    		},
+    		data: {
+    			simpleData: {
+    				enable:true,
+    				idKey: "id",
+    				pIdKey: "pId",
+    				rootPId: ""
+    			}
+    		},
+    		callback: {
+    			beforeClick: function(treeId, treeNode) {
+    				var zTree = $.fn.zTree.getZTreeObj("tree");
+    				if (treeNode.isParent) {
+    					zTree.expandNode(treeNode);
+    					return false;
+    				} else {
+    					demoIframe.attr("src",treeNode.file + ".html");
+    					return true;
+    				}
+    			}
+    		}
+    	};
+    $.fn.zTree.init($("#treeDemo"), setting2, zNodes2);
 })
 
 var setting = {
@@ -69,7 +111,7 @@ function beforeRemove(treeId, treeNode) {
             if (rs.data == 1) {
                 result = true;
             } else {
-                initAlert(0, rs.message);
+                Alert("success", rs.message);
             }
         }
     });
@@ -86,7 +128,6 @@ function onRemove(e, treeId, treeNode) {
         dataType: "json",
         success: function(result) {
             alert(result.message);
-            //initAlert(1, result.message);
         }
     });
 }

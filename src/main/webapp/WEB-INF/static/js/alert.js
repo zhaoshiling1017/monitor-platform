@@ -1,60 +1,50 @@
-function initAlert(status, message) {
-    var str = '<div class="alert-box">';
-    str += '<div class="alert-header clear">';
-    str += '<span class="left">提示</span>';
-    str += '<span class="icon-delete right"></span></div>';
-    str += '<div class="alert-body text-center"><span></span><p></p></div>';
-    str += '<div class="alert-footer" style="display:none;"><p class="right">';
-    str += '<a href="#" class="btn btn-primary">确认</a>';
-    str += '<a href="#" class="btn btn-cancel">取消</a>';
-    str += '</p></div></div>';
-    str += '<div class="mask"></div>';
-    if($(".alert-box").length == 0){
-        $("body").append(str);
+function Alert(status, message) {
+	//status:传字符串，三个状态：fail、success、danger
+	//danger有确定和取消两个按钮，另外两个状态都只有一个按钮
+    if(status == undefined){
+        status = 'success';
     }
-    var obj = $(".alert-box");								//弹出框
-    var span = $(".alert-body span");						//提示图标
-    var btns = $(".alert-footer");							//按钮
-    var p = $(".alert-body p");								//提示信息
-    var maskP = $("#mask",parent.document) || $("#mask");	//父级页面遮罩层
-    var maskC = $(".mask");									//iframe页面遮罩层
+    var str ='<div class="Alert">';
+    str += '<div class="alert-dialog">';
+    str += '<div class="alert-header">操作提示</div>';
+    str += '<div class="alert-mes">';
+    str += '<span class="icon-'+ status +'"></span>';
+    str += '<b></b></div></div></div>';
+
+    var btn =  '<div class="alert-footer">';
+    btn += '<button class="btn  btn-cancel">取消</button>';
+    btn += '<button class="btn btn-confirm">确定</button></div>';
+    $("body").append(str);
+    var mask = $("#mask",parent.document);
+    mask.show();
+    var obj = $(".Alert");
+    var mes = $(".alert-mes b");
     
-    //status为0时:失败提示
-    if(status == 0 || status == 1){
-    	if(status == 0){
-    		obj.removeClass().addClass("alert-box danger");
-        	span.removeClass().addClass("icon-amazed");
-    	}else{
-        	obj.removeClass().addClass("alert-box success");
-        	span.removeClass().addClass("icon-ok");
-    	}
-    	p.text(message);
-    	maskC.show();
-    	maskP.show();
-    	obj.show();
-        setTimeout(function(){
-            obj.slideUp(400);
-            maskC.fadeOut(400);
-            maskP.fadeOut(400);
-        },2000)
-    }else{
-    	obj.removeClass().addClass("alert-box success");
-    	span.removeClass().addClass("icon-delete");
-        p.text("确认删除这条数据吗?");
-        btns.show();
-        maskC.show();
+    //status为0时:失败提示,1为成功提示
+    obj.addClass(status);
+    if(status == "fail"){
+        mes.text("操作失败，请重试！");
+    }else if(status == "success"){
+        mes.text("操作成功！");
+    }else if(status == "danger"){
+        obj.find(".alert-dialog").append(btn);
+        mes.text("确定删除这条数据？");
+    }
+    if(message != undefined){
+        mes.text(message);
     }
     //点击取消
-    $(document).on("click",".alert-box .btn-cancel",function(){
+    $(document).on("click",".Alert .btn-cancel",function(){
         close();
+        return false;
     })
-    //点击关闭
-    $(document).on("click",".alert-box .icon-delete",function(){
-        close();
-    })
+    if(!($(".Alert").is($(".danger")))){
+    	setTimeout(function(){
+        	close();
+        },800)
+    }
     function close(){
-        obj.slideUp(400);
-        maskP.hide();
-        maskC.hide();
+        $(".Alert").fadeOut(300);
+        mask.fadeOut(300);
     }
 }

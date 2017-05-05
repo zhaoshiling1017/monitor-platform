@@ -325,3 +325,119 @@ form {
 .modal .icon-8 {
   font-size: 20px;
 }
+/* 模态框样式重写 */
+.modal-backdrop {
+  background-color: #fff;
+}
+.modal .modal-content {
+  border-radius: 0;
+  border: 0;
+}
+.modal .modal-content .modal-body {
+  min-height: 200px;
+  max-height: 500px;
+  overflow-y: auto;
+}
+.modal .modal-header {
+  height: 40px;
+  padding: 0 15px;
+  background: #f6f6f6;
+}
+.modal .modal-header h4 {
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 40px;
+}
+.modal .modal-header a {
+  margin-top: 10px;
+  opacity: 1;
+  font-size: 18px;
+  color: #C0272D;
+}
+.btn {
+  width: 100px;
+  height: 34px;
+  border-raius: 5px;
+  box-sizing: border-box;
+}
+.btn.btn-confirm:hover,
+.btn:link,
+.btn:visited {
+  color: #fff;
+}
+.btn-cancel {
+  border: 1px solid #dcdcdc;
+  background: #fff;
+}
+.btn-confirm {
+  background: #1887EC;
+  color: #fff;
+}
+/* 操作提示 */
+.Alert {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1100;
+  background: rgba(255, 255, 255, 0.5);
+}
+.Alert .alert-dialog {
+  width: 600px;
+  min-height: 220px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  padding-bottom: 20px;
+  margin: -200px 0 0 -300px;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px #bbb;
+}
+.Alert .alert-dialog .alert-header {
+  position: relative;
+  background: #5581d6;
+  line-height: 40px;
+  font-size: 16px;
+  color: #fff;
+  text-indent: 10px;
+}
+.Alert .alert-dialog .alert-mes {
+  text-align: center;
+}
+.Alert .alert-dialog .alert-mes span {
+  border-radius: 50%;
+  display: block;
+  font-size: 60px;
+  margin: 40px auto 30px;
+}
+.Alert .alert-dialog .alert-mes .icon-danger {
+  color: #ff6600;
+}
+.Alert .alert-dialog .alert-mes b {
+  font-size: 16px;
+  color: #000;
+}
+.Alert .alert-dialog .alert-footer {
+  border-top: 1px solid #dcdcdc;
+  padding-top: 10px;
+  text-align: center;
+  margin-top: 40px;
+}
+.Alert .alert-dialog .alert-footer button {
+  float: right;
+  margin-right: 10px;
+}
+.Alert.success .alert-mes span {
+  color: #FF921E;
+}
+.Alert.success .alert-mes span:before {
+  content: "\e924";
+}
+.Alert.fail .alert-mes span {
+  color: #EC1C24;
+}
+.Alert.fail .alert-mes span:before {
+  content: "\e922";
+}

@@ -230,7 +230,11 @@ a:hover, a:focus, a:active {
     padding: 0;
     text-indent: 0.5em;
 }
-
+.form-inline .selectTree{
+	width:120px;
+	height:30px;
+	border:1px solid #ccc;
+}
 .form-inline select {
     width: 120px;
     height: 30px;
