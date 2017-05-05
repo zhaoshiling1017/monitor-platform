@@ -1,5 +1,5 @@
 function Alert(status, message) {
-	//status:传字符串，三个状态：fail、success、danger
+        //status:传字符串，三个状态：fail、success、danger
 	//danger有确定和取消两个按钮，另外两个状态都只有一个按钮
     if (status == undefined) {
         status = 'success';

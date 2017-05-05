@@ -3,7 +3,6 @@
  */
 $(function(){
 	if($("#nodes").length>0){
-        Alert("danger", "节点名称不能为空.");
 		var data = $("#nodes").val();
 	    var zNodes = JSON.parse(data);
 	    $.fn.zTree.init($("#defectTree"), setting, zNodes);
@@ -111,7 +110,7 @@ function beforeRemove(treeId, treeNode) {
             if (rs.data == 1) {
                 result = true;
             } else {
-                Alert("success", rs.message);
+                Alert("fail", rs.message);
             }
         }
     });
@@ -132,7 +131,6 @@ function onRemove(e, treeId, treeNode) {
             } else {
                 Alert("success", result.message);
             }
-
         }
     });
 }
@@ -143,7 +141,7 @@ function beforeRename(treeId, treeNode, newName, isCancel) {
         setTimeout(function() {
             var zTree = getTree();
             zTree.cancelEditName();
-            Alert("danger", "节点名称不能为空.");
+            Alert("fail", "节点名称不能为空.");
         }, 0);
         return false;
     }
