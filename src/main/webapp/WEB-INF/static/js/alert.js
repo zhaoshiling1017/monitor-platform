@@ -43,8 +43,8 @@ function Alert(status, message) {
         	close();
         },800)
     }
-    function close() {
-        $(".Alert").fadeOut(300);
-        mask.fadeOut(300);
+    function close(){
+        $(".Alert").fadeOut(600);
+        mask.fadeOut(600);
     }
 }
