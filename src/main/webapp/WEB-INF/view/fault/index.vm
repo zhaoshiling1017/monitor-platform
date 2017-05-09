@@ -69,7 +69,7 @@
     <div class="modal-dialog " role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <a href="javascript:;" class="close icon-delete" data-dismiss="modal" aria-label="Close"></a>
+                <a href="javascript:;" class="close icon-8" data-dismiss="modal" aria-label="Close"></a>
                 <h4 class="modal-title">故障类型</h4>
             </div>
             <div class="modal-body">

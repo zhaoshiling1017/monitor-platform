@@ -352,7 +352,6 @@ form {
   margin-top: 10px;
   opacity: 1;
   font-size: 18px;
-  color: #C0272D;
 }
 .btn {
   width: 100px;
@@ -435,11 +434,17 @@ form {
 .Alert.success .alert-mes span:before {
   content: "\e900";
 }
+.Alert.fail .alert-header {
+  background: #EC1C24;
+}
 .Alert.fail .alert-mes span {
   color: #EC1C24;
 }
 .Alert.fail .alert-mes span:before {
   content: "\e907";
+}
+.Alert.danger .alert-header {
+  background: #FF921E;
 }
 .Alert.danger .alert-mes span {
   color: #FF921E;
