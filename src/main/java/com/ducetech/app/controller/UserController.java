@@ -204,7 +204,7 @@ public class UserController extends BaseController {
 			}
 		}
 		userService.updateUser(user);
-		return OperationResult.buildFailureResult("成功", 1);
+		return OperationResult.buildSuccessResult("成功", 1);
 	}
 
 
@@ -218,7 +218,7 @@ public class UserController extends BaseController {
 		user.setUserId(userId);
 		user.setIsDeleted(isDeleted);
 		userService.updateUserStatus(user);
-		return OperationResult.buildFailureResult("成功", 1);
+		return OperationResult.buildSuccessResult("成功", 1);
 	}
 
 	/**
@@ -231,6 +231,6 @@ public class UserController extends BaseController {
 		User user = userService.getUserByUserId(userId);
 		user.setPassword(Digests.md5Hash("123456", user.getSecretKey()));
 		userService.resetPass(user);
-		return OperationResult.buildFailureResult("重置成功，密码为：123456", 1);
+		return OperationResult.buildSuccessResult("重置成功，密码为：123456", 1);
 	}
 }
