@@ -1,14 +1,11 @@
 package com.ducetech.api.controller;
 
-import com.ducetech.api.model.vo.AdvertiserVO;
-import com.ducetech.framework.security.TokenManager;
 import com.ducetech.framework.support.service.DynamicConfigService;
 import com.ducetech.framework.web.annotation.IgnoreSecurity;
 import com.ducetech.framework.web.view.OperationResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,7 +15,6 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
-import java.util.Date;
 import java.util.Iterator;
 
 /**
