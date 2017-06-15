@@ -3,6 +3,4 @@
 target/
 .classpath
 .idea
-src/main/resources/jdbc.properties
-src/main/resources/logback.xml
 monitor-platform.iml
