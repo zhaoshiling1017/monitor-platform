@@ -29,7 +29,7 @@
 		
 	<!-- 通过角色ID获取拥有的菜单权限  -->
 	<select id="selectPermissionsByRoleId" resultMap="permissionMap"> 
-		select * from t_permission where permission_id in(select permission_id from role_permission where role_id=#{roleId})
+		select * from t_permission where permission_id in(select permission_id from t_role_permission where role_id=#{roleId})
 	</select>
 	
 	<!-- 通过ID获取菜单权限  -->

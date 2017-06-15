@@ -4,7 +4,7 @@
 	<groupId>com.ducetech</groupId>
 	<artifactId>monitor-platform</artifactId>
 	<packaging>war</packaging>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>monitor-platform</name>
 	<url>http://maven.apache.org</url>
 
