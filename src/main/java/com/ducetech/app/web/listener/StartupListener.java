@@ -29,7 +29,6 @@ public class StartupListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        ExecutorService exec = Executors.newFixedThreadPool(1);
         exec.submit(new UploadImageServer());
         LOG.info("Upload image server is Started.");
     }
