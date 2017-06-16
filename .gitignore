@@ -4,3 +4,5 @@ target/
 .classpath
 .idea
 monitor-platform.iml
+dump.rdb
+.gitignore~
