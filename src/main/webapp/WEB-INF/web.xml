@@ -13,16 +13,19 @@
     <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
   </listener>
   <listener>
-    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    <listener-class>com.ducetech.framework.web.listener.ApplicationContextPreListener</listener-class>
   </listener>
   <listener>
-    <listener-class>com.ducetech.framework.web.listener.ApplicationContextPreListener</listener-class>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
   <listener>
     <listener-class>com.ducetech.framework.web.listener.ApplicationContextPostListener</listener-class>
   </listener>
   <listener>
     <listener-class>com.ducetech.framework.web.listener.AuthLogonHistRefreshListener</listener-class>
+  </listener>
+  <listener>
+    <listener-class>com.ducetech.app.web.listener.StartupListener</listener-class>
   </listener>
   <!-- jcaptcha验证码图片生成URL -->
   <servlet>

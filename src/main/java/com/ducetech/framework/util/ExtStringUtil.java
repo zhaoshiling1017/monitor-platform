@@ -7,8 +7,10 @@ import org.apache.commons.lang3.CharUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.data.redis.core.RedisTemplate;
 
 import java.io.*;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -889,6 +891,33 @@ public class ExtStringUtil {
             str = prefix + str;
         }
         return str;
+    }
+
+    /**
+     * 批次号生成器
+     * @return
+     */
+    public static String batchNoGenerator(String dicName, String prefix, Integer length, RedisTemplate<String, Object> redisTemplate){
+        String nextval = "";
+        String oldValue = StringUtils.trim(redisTemplate.boundValueOps(dicName).increment(1) + "");
+        Long now = Long.parseLong(oldValue);
+        String pattern = getPattern(prefix,length);
+        nextval = DateUtil.formatDate(new Date(), DateUtil.FORMAT_YYYYMMDD)+new DecimalFormat(pattern).format(now);
+        return nextval;
+    }
+
+    /**
+     * 获取模式
+     * @param prefix
+     * @param length
+     * @return
+     */
+    public static String  getPattern(String prefix,Integer length){
+        String pattern = "";
+        for(int i=0; i<length;i++){
+            pattern += prefix;
+        }
+        return pattern;
     }
   
 }
