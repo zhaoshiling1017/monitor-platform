@@ -380,11 +380,17 @@ public class NumberUtil {
      * @return
      */
     public static short byte2Short(byte[] b) {
-        short shortVal = 0;
-        for (int i = 0; i < b.length; i++) {
-            shortVal += (b[i] & 0xFF) << (8 * (1 - i));
-        }
-        return shortVal;
+//        short shortVal = 0;
+//        for (int i = 0; i < b.length; i++) {
+//            shortVal += (b[i] & 0xFF) << (8 * (1 - i));
+//        }
+//        return shortVal;
+        short s = 0;
+        short s0 = (short) (b[0] & 0xff);// 最低位
+        short s1 = (short) (b[1] & 0xff);
+        s1 <<= 8;
+        s = (short) (s0 | s1);
+        return s;
     }
 
 }

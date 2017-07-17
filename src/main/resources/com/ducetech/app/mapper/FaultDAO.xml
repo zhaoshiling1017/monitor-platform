@@ -20,7 +20,43 @@
         <result column="is_deleted" property="isDeleted"/>
     </resultMap>
 
+    <!--查询出机位 机位对应的缺陷信息-->
+    <resultMap type="com.ducetech.app.model.vo.FaultVo" id="deviceFaultMap">
+        <id property="deviceNum" column="device_num"/>
+        <collection property="faults" ofType="com.ducetech.app.model.vo.FaultVo">
+            <id column="fault_id" property="faultId"/>
+            <result column="line" property="line"/>
+            <result column="car_number" property="carNumber"/>
+            <result column="bow_position" property="bowPosition"/>
+            <result column="interval" property="interval"/>
+            <result column="env_temperature" property="envTemperature"/>
+            <result column="eq_temperature" property="eqTemperature"/>
+            <result column="type" property="type"/>
+            <result column="level" property="level"/>
+            <result column="image_path" property="imagePath"/>
+            <result column="fault_info" property="faultInfo"/>
+            <result column="device_num" property="deviceNum"/>
+            <result column="created_at" property="createdAt"/>
+            <result column="is_deleted" property="isDeleted"/>
 
+            <association property="dic" javaType="com.ducetech.app.model.Dictionary">
+                <id column="dic_id" property="dicId"/>
+                <result column="node_name" property="nodeName"/>
+            </association>
+        </collection>
+    </resultMap>
+
+    <!--查询出机位 机位对应的缺陷信息-->
+    <select id="selectDeviceFaults" parameterType="com.ducetech.app.model.Fault" resultMap="deviceFaultMap">
+       select f.fault_id, f.line, f.car_number,  f.bow_position, f.interval, f.env_temperature, f.eq_temperature, f.type, f.level, f.image_path, f.fault_info, f.created_at, f.device_num, d.node_name,d.dic_id, f.is_deleted from t_fault f,t_dictionary d where f.is_deleted = 0 and f.type = d.node_code
+        <if test="beginTime!=null and beginTime!=''">
+            and f.created_at &gt;= STR_TO_DATE(#{beginTime}, '%Y-%m-%d %H:%i:%s')
+        </if>
+        <if test="endTime!=null and endTime!=''">
+            and f.created_at &lt;= STR_TO_DATE(#{endTime}, '%Y-%m-%d %H:%i:%s')
+        </if>
+        order by f.device_num asc,f.created_at desc
+    </select>
 
     <!-- 对缺陷记录的通用查询  -->
     <select id="selectFault" parameterType="com.ducetech.app.model.Fault" resultMap="faultMap">
@@ -43,4 +79,10 @@
     <select id="queryById" resultMap="faultMap">
       select fault_id, line, car_number,  bow_position, `interval`, env_temperature, eq_temperature, `type`, `level`, image_path, fault_info, created_at, device_num, is_deleted from t_fault where is_deleted = 0 AND fault_id = #{faultId}
     </select>
+
+
+    <insert id="saveFault" parameterType="com.ducetech.app.model.Fault">
+      insert into t_fault (fault_id, line, car_number,  bow_position, `interval`, env_temperature, eq_temperature, `type`, `level`, image_path, fault_info, created_at, device_num, is_deleted)
+      values(NULL,#{line},#{carNumber},#{bowPosition},#{interval},#{envTemperature},#{eqTemperature},#{type},#{level},#{imagePath},#{faultInfo},#{createdAt},#{deviceNum},#{isDeleted})
+    </insert>
 </mapper>

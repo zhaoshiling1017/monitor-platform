@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.ducetech.app.dao.DictionaryDAO;
 import com.ducetech.app.dao.FaultDAO;
 import com.ducetech.app.model.Fault;
+import com.ducetech.app.model.vo.FaultVo;
 import com.ducetech.app.service.FaultService;
 import com.ducetech.framework.model.BaseQuery;
 import com.ducetech.framework.model.PagerRS;
@@ -53,5 +54,15 @@ public class FaultServiceImpl implements FaultService {
     @Override
     public Fault queryById(String faultId) {
         return faultDAO.queryById(faultId).get(0);
+    }
+
+    @Override
+    public List<FaultVo> getDeviceFaultsService(Fault fault) {
+        return faultDAO.selectDeviceFaults(fault);
+    }
+
+    @Override
+    public void saveFault(Fault fault) {
+        faultDAO.saveFault(fault);
     }
 }

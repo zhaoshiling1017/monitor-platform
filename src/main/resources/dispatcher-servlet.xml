@@ -67,6 +67,8 @@
 
 	<mvc:resources mapping="/static/**" location="/WEB-INF/static/" />
 	<mvc:resources mapping="/report/**" location="/WEB-INF/upload/" />
+	<!--图片存放位置-->
+	<mvc:resources mapping="/data/**" location="/WEB-INF/data/" />
 
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
