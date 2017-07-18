@@ -71,7 +71,7 @@
                 } else {
                     li = '<li>';
                 }
-                li += '<a href="#part' + result[i].deviceNum + '"data-toggle="tab"><img src="$path' + result[i].faults[0].imagePath + '"></a>';
+                li += '<a href="#part' + result[i].deviceNum + '"data-toggle="tab"><img src="' + result[i].faults[0].imagePath + '"></a>';
                 li += '<p>' + result[i].deviceNum + '号机位</p>';
                 li += '</li>';
                 leftul.append(li);
