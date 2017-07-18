@@ -74,8 +74,8 @@ public class StartupListener implements ServletContextListener {
                         bis = new BufferedInputStream(socket.getInputStream());
                         //图片格式都是.bmp
                         //TODO
-                        String imagePath = dynamicConfigService.getString("fault_image_path", "/data/image/fault/") + ExtStringUtil.batchNoGenerator("DIC.FAULT_IMAGE_NAME_GEN", "0", 4, redisTemplate) + dynamicConfigService.getString("fault_image_sufix", ".bmp");
-                        //String imagePath = "D://data/test.bmp";
+                        //String imagePath = dynamicConfigService.getString("fault_image_path", "/data/image/fault/") + ExtStringUtil.batchNoGenerator("DIC.FAULT_IMAGE_NAME_GEN", "0", 4, redisTemplate) + dynamicConfigService.getString("fault_image_sufix", ".bmp");
+                        String imagePath = "D://data/test.bmp";
                         bos = new BufferedOutputStream(new FileOutputStream(imagePath));
                         byte[] dataLen = new byte[2];
                         bis.read(dataLen);

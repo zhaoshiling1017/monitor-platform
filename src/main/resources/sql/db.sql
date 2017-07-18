@@ -162,5 +162,6 @@ CREATE TABLE `t_dictionary` (
   PRIMARY KEY (`dic_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `t_dictionary` (`node_code`, `node_name`, `node_order`, `creator_id`, `updator_id`, `created_at`, `updated_at`, `is_deleted`) values ('000001', '一级缺陷', 1, 1, 1, now(), now(), 0);
-
+INSERT INTO `t_dictionary` VALUES ('1', '000001', '空调螺母松动', '1', '1', '1', '2017-06-29 11:03:34', '2017-06-29 11:03:34', '0');
+INSERT INTO `t_dictionary` VALUES ('2', '000002', '受电弓厚度磨损', '1', '1', '1', '2017-07-10 17:13:46', '2017-07-10 17:14:06', '0');
+INSERT INTO `t_dictionary` VALUES ('3', '000003', '受电弓存在裂纹', '1', '1', '1', '2017-07-10 17:13:48', '2017-07-10 17:13:48', '0');

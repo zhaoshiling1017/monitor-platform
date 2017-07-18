@@ -88,7 +88,7 @@
                 div += '<ul>';
                 for (j = 0; j < resultModel.faults.length; j++) {
                     div += '<li>';
-                    div += '<img src="$path' + resultModel.faults[j].imagePath + '">';
+                    div += '<img src="' + resultModel.faults[j].imagePath + '">';
                     //div += '<p>';
                     //div += '<label>' + resultModel.deviceNum + '号机位' + (j + 1) + '</label>';
                     //div += '<span>' + resultModel.faults[j].carNumber + resultModel.faults[j].bowPosition + '号受电弓' + resultModel.faults[j].createdAt + '</span>';
