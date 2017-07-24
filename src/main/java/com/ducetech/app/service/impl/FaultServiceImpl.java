@@ -13,6 +13,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -48,6 +49,24 @@ public class FaultServiceImpl implements FaultService {
         PageInfo page = new PageInfo(faultList);
         PagerRS<Fault> pagerRS = new PagerRS<>(faultList, page.getTotal(), page.getPages());
         return pagerRS;
+    }
+
+
+    @Override
+    public List<Fault> getFaults(Fault faultVO) {
+        if (!ExtStringUtil.isBlank(faultVO.getBeginTime())) {
+            faultVO.setBeginTime(faultVO.getBeginTime() + " 00:00:00");
+        }
+        if (!ExtStringUtil.isBlank(faultVO.getEndTime())) {
+            faultVO.setEndTime(faultVO.getEndTime() + " 23:59:59");
+        }
+        List<Fault> faultList = faultDAO.selectFault(faultVO);
+        for (Fault fault : faultList) {
+            if (!ExtStringUtil.isBlank(fault.getType())) {
+                fault.setDic(dictionaryDAO.findByCode(fault.getType()).get(0));
+            }
+        }
+        return faultList;
     }
 
     @Override

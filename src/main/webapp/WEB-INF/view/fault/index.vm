@@ -22,7 +22,7 @@
     <div class="right defectRight" style="margin-left:0;">
         <p class="heading">检测数据
         	<a class="btn-search" href="javascript:getTableData();">查询</a>
-        	<a class="btn-export" href="javascript:;">导出</a>
+        	<a class="btn-export" href="javascript:exportData();">导出</a>
         </p>
         <div class="defect-container">
             <form class="control-condition" id="faultForm">
@@ -101,6 +101,10 @@
     $(function () {
         tableInit();
     });
+
+
+
+
     function tableInit() {
         $("#faultTable").jqGrid({
             url:"$path/faults",
@@ -228,6 +232,15 @@
             $.fn.zTree.init($("#faultQZTree2"), setting2, zNodes);
         }
     });
+
+    function exportData() {
+        var type = $("#fType");
+        var timeon = $("#timeon");
+        var timeoff = $("#timeoff");
+        var carNumber = $("#carNumber");
+
+        window.location.href = "$path/printFault?type=" + type.val() + "&beginTime=" + timeon.val() + "&endTime=" + timeoff.val() + "&carNumber=" + carNumber.val()
+    }
 </script>
 </body>
 </html>

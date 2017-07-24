@@ -28,16 +28,21 @@ public class StartupListener implements ServletContextListener {
 
     private static final Logger LOG = LoggerFactory.getLogger(StartupListener.class);
     private static final ExecutorService exec = Executors.newFixedThreadPool(1);
+    private UploadImageServer uploadImageServer;
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        exec.submit(new UploadImageServer());
+        uploadImageServer = new UploadImageServer();
+        exec.submit(uploadImageServer);
         LOG.info("Upload image server is Started.");
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
         LOG.debug("Invoke contextDestroyed contextDestroyed");
+        if (uploadImageServer != null) {
+            uploadImageServer.close();
+        }
         exec.shutdown();
     }
 
@@ -81,7 +86,7 @@ public class StartupListener implements ServletContextListener {
                         bis.read(dataLen);
                         byte[] dataBytes = new byte[NumberUtil.byte2Short(dataLen)];
                         int resultLen = bis.read(dataBytes);
-                        String params = new String(dataBytes, 0, resultLen,"GBK");
+                        String params = new String(dataBytes, 0, resultLen, "GBK");
                         //TODO 把图片属性及图片路径插入数据库
                         LOG.info("fault image params {}.", params);
 
@@ -105,36 +110,40 @@ public class StartupListener implements ServletContextListener {
                     } catch (Exception e) {
                         LOG.error(e.getMessage(), e);
                     } finally {
-                        try {
-                            if (null != bos) {
-                                bos.close();
-                            }
-                        } catch (Exception e) {
-                            LOG.error(e.getMessage(), e);
-                        }
-                        try {
-                            if (null != bis) {
-                                bis.close();
-                            }
-                        } catch (Exception e) {
-                            LOG.error(e.getMessage(), e);
-                        }
-                        try {
-                            if (null != socket) {
-                                socket.close();
-                            }
-                        } catch (Exception e) {
-                            LOG.error(e.getMessage(), e);
-                        }
-                        try {
-                            if (null != pw) {
-                                pw.close();
-                            }
-                        } catch (Exception e) {
-                            LOG.error(e.getMessage(), e);
-                        }
+                        close();
                     }
                 }
+            }
+        }
+
+        public void close() {
+            try {
+                if (null != bos) {
+                    bos.close();
+                }
+            } catch (Exception e) {
+                LOG.error(e.getMessage(), e);
+            }
+            try {
+                if (null != bis) {
+                    bis.close();
+                }
+            } catch (Exception e) {
+                LOG.error(e.getMessage(), e);
+            }
+            try {
+                if (null != socket) {
+                    socket.close();
+                }
+            } catch (Exception e) {
+                LOG.error(e.getMessage(), e);
+            }
+            try {
+                if (null != pw) {
+                    pw.close();
+                }
+            } catch (Exception e) {
+                LOG.error(e.getMessage(), e);
             }
         }
     }

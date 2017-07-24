@@ -21,4 +21,6 @@ public interface FaultService {
     void saveFault(Fault fault);
 
     void updateFaultType(String faultId, String type);
+
+    List<Fault> getFaults(Fault faultVO);
 }
