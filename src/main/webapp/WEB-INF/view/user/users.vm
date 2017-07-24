@@ -316,11 +316,11 @@
             data: $('#userAddForm').serialize(),
             dataType: "json",
             error: function (request) {
-                initAlert(0,"网络错误");
+                Alert(0,"网络错误");
             },
             success: function (data) {
                 for(x in data){
-                    initAlert(x,data[x]);
+                    Alert(x,data[x]);
                 }
                 setTimeout(function(){
                     $("#people-add").hide();
@@ -338,7 +338,7 @@
             data: null,
             dataType: "json",
             error: function (xmlHttpReq, status) {
-                initAlert(0,"网络错误");
+                Alert(0,"网络错误");
             },
             success: function (data) {
                 $("#editUserId").val(data.userId);
@@ -397,10 +397,10 @@
             data: null,
             dataType: "json",
             error: function () {
-                initAlert(0,"网络错误");
+                Alert(0,"网络错误");
             },
             success: function (result) {
-                initAlert(result.data, result.message);
+                Alert(result.data, result.message);
                 $(".ui-jqgrid-btable").jqGrid().trigger('reloadGrid');
             }
         });
@@ -414,7 +414,7 @@
             data: {_method:"put",isDeleted:isDeleted},
             dataType: "json",
             error: function () {
-                initAlert(0,"网络错误");
+                Alert(0,"网络错误");
             },
             success: function (data) {
                 var tdisDeleted = $("#"+userId).find("[aria-describedby $= 'isDeleted']");
@@ -444,10 +444,10 @@
             data: null,
             dataType: "json",
             error: function () {
-                initAlert(0, "网络错误");
+                Alert(0, "网络错误");
             },
             success: function (result) {
-                initAlert(result.data, result.message);
+                Alert(result.data, result.message);
             }
         });
     }

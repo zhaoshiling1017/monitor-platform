@@ -2,13 +2,12 @@ package com.ducetech.app.controller;
 
 import com.ducetech.app.model.Dictionary;
 import com.ducetech.app.model.Fault;
-import com.ducetech.app.model.User;
 import com.ducetech.app.service.DictionaryService;
 import com.ducetech.app.service.FaultService;
 import com.ducetech.framework.controller.BaseController;
 import com.ducetech.framework.model.BaseQuery;
 import com.ducetech.framework.model.PagerRS;
-import com.ducetech.framework.util.DateUtil;
+import com.ducetech.framework.web.view.OperationResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +38,8 @@ public class FaultController extends BaseController {
     public String index(Model model) {
         List<Dictionary> dics = dictionaryService.queryAll();
         model.addAttribute("dics", dics);
+        String nodes = dictionaryService.createTree();
+        model.addAttribute("nodes", nodes);
         return "fault/index";
     }
 
@@ -56,6 +57,12 @@ public class FaultController extends BaseController {
         BaseQuery<Fault> query = Fault.getSearchCondition(Fault.class, request);
         PagerRS<Fault> rs = faultService.getFaultByPager(query);
         return rs;
+    }
+    @RequestMapping(value = "/faults/{id}/updateFaultType", method = RequestMethod.PUT)
+    @ResponseBody
+    public OperationResult updateFaultType(@PathVariable(value = "id") String faultId, String type) {
+        faultService.updateFaultType(faultId, type);
+        return OperationResult.buildSuccessResult("缺陷类型更新成功", 1);
     }
 
 }

@@ -1,6 +1,5 @@
 package com.ducetech.app.service.impl;
 
-import com.alibaba.fastjson.JSON;
 import com.ducetech.app.dao.DictionaryDAO;
 import com.ducetech.app.dao.FaultDAO;
 import com.ducetech.app.model.Fault;
@@ -64,5 +63,10 @@ public class FaultServiceImpl implements FaultService {
     @Override
     public void saveFault(Fault fault) {
         faultDAO.saveFault(fault);
+    }
+
+    @Override
+    public void updateFaultType(String faultId, String type) {
+        faultDAO.updateFaultType(faultId, type);
     }
 }

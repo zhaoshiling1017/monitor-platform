@@ -19,4 +19,6 @@ public interface FaultService {
     List<FaultVo> getDeviceFaultsService(Fault fault);
 
     void saveFault(Fault fault);
+
+    void updateFaultType(String faultId, String type);
 }

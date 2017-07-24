@@ -1,7 +1,6 @@
 package com.ducetech.app.controller;
 
 
-import com.alibaba.fastjson.JSON;
 import com.ducetech.app.model.Department;
 import com.ducetech.app.model.Role;
 import com.ducetech.app.model.User;
@@ -75,7 +74,7 @@ public class UserController extends BaseController {
 				subject.getSession().setAttribute("DT_LOGIN_USER", user);
 				CookieUtil.setCookie(response, "", user.getUserId());
 			}catch(Exception ex){
-				logger.error(ex.getMessage(), ex);
+				//logger.error(ex.getMessage(), ex);
 				modelMap.addFlashAttribute("message", "账号或密码错误");
 				return "redirect:/login";
 			}

@@ -28,7 +28,7 @@
 			       url: "$path/getDate",
 			       dataType: "json",
 			       error: function (request) {
-			       		initAlert(0,"网络错误");   
+			       		Alert(0,"网络错误");
 			       },
 			       success: function (data) {
 			       		date1 = new Date(data);

@@ -52,7 +52,7 @@ function getAllPermission(){
        url: "$path/permissions/getAllPermission",
        dataType: "json",
        error: function (request) {
-       		initAlert(0,"网络错误");   
+           Alert(0,"网络错误");
        },
        success: function (data) {
     		console.log(data);
@@ -112,11 +112,11 @@ function saveRole(){
        data: $('#roleForm').serialize(),
        dataType: "json",
        error: function (request) {
-       		initAlert(0,"网络错误");   
+           Alert(0,"网络错误");
        },
        success: function (data) {
     		for(x in data){
-       			initAlert(x,data[x]);
+                Alert(x,data[x]);
        		}    
        		setTimeout(function(){
        			$("#mask",parent.document).hide();

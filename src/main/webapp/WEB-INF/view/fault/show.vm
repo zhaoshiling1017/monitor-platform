@@ -40,10 +40,6 @@
                     <span>$!fault.level</span>
                 </div>
                 <div class="form-inline">
-                    <label>区间：</label>
-                    <span>$!fault.interval</span>
-                </div>
-                <div class="form-inline">
                     <label>弓位置：</label>
                     <span>$!fault.bowPosition</span>
                 </div>

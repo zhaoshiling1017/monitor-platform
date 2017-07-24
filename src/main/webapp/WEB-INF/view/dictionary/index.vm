@@ -73,15 +73,14 @@
             postData: {
                 search : JSON.stringify($('#faultForm').serializeObject())
             },
-            colNames:['线路','车号','弓位置','区间',"缺陷类型","缺陷级别","缺陷信息","操作"],
+            colNames:['线路','车号','弓位置',"缺陷类型","缺陷级别","缺陷信息","操作"],
             colModel:[
                 {name:'line', width:'10%'},
-                {name:'carNumber', width:'10%'},
+                {name:'carNumber', width:'15%'},
                 {name:'bowPosition', width:'20%'},
-                {name:'interval', width:'20%'},
-                {name:'dic.nodeName', width:'10%'},
+                {name:'dic.nodeName', width:'15%'},
                 {name:'level', width:'10%'},
-                {name:'faultInfo', width:'10%'},
+                {name:'faultInfo', width:'20%'},
                 {name:'operation', width:'10%',formatter:function(cellvalue,options,rowObject){
                     var str = '<a href="$path/faults/'+rowObject.faultId+'">详情</a>';
                     return str;

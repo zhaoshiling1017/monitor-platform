@@ -190,7 +190,7 @@ function noticeUnCountIndex(){
        url: "notices/noticeUnCount",
        dataType: "json",
        error: function (request) {
-       		initAlert(0,"网络错误");   
+           Alert(0,"网络错误");
        },
        success: function (data) {
     	   $("#noticeCount").text(data);      
@@ -203,7 +203,7 @@ function noticeUnCount(){
        url: "noticeUnCount",
        dataType: "json",
        error: function (request) {
-       		initAlert(0,"网络错误");   
+       		Alert(0,"网络错误");
        },
        success: function (data) {
     	   var obj = $("#noticeCount",parent.document);

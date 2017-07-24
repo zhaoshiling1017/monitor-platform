@@ -27,7 +27,7 @@
 	$(function(){
 		var tag = "$tag";
 		if ("sessionInvalid" == tag) {
-			initAlert(0,"登录超时，请重新登录！");
+            Alert(0,"登录超时，请重新登录！");
 			setTimeout(function(){
 				location.href = "$path/";
 			},2000)

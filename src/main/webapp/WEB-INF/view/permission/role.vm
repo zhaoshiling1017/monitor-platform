@@ -117,7 +117,7 @@ function roleStatus(roleId, isDeleted){
        data: {"roleId":roleId, "isDeleted":isDeleted},
        dataType: "json",
        error: function (request) {
-       		initAlert(0,"网络错误");   
+           Alert(0,"网络错误");
        },
        success: function (data) {
 			//alert(data.result);

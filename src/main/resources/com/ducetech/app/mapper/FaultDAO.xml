@@ -85,4 +85,14 @@
       insert into t_fault (fault_id, line, car_number,  bow_position, `interval`, env_temperature, eq_temperature, `type`, `level`, image_path, fault_info, created_at, device_num, is_deleted)
       values(NULL,#{line},#{carNumber},#{bowPosition},#{interval},#{envTemperature},#{eqTemperature},#{type},#{level},#{imagePath},#{faultInfo},#{createdAt},#{deviceNum},#{isDeleted})
     </insert>
+
+    <update id="updateFaultType">
+        update t_fault
+        <set>
+            <if test="type != null and type != ''">
+                type=#{type}
+            </if>
+        </set>
+        where fault_id=#{faultId}
+    </update>
 </mapper>
