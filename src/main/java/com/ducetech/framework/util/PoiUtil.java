@@ -1,10 +1,13 @@
 package com.ducetech.framework.util;
 
+import com.ducetech.app.model.Fault;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -30,7 +33,7 @@ public class PoiUtil {
      * <pre>
      *    指定获取某列所有数据
      * </pre>
-     * 
+     *
      * @return
      */
     public static List<Map<String, String>> readExcelSpecifyColNum(InputStream is, Integer readFromRowNum, Integer specifyColNum) {
@@ -39,7 +42,7 @@ public class PoiUtil {
     }
 
     public static List<Map<String, String>> readExcelContent(MultipartFile excelFile, Integer sheetIndex, Integer readFromRowNum,
-            Integer readFromColNum) {
+                                                             Integer readFromColNum) {
         return readExcelContent(excelFile, sheetIndex, null, readFromRowNum, readFromColNum);
     }
 
@@ -53,6 +56,7 @@ public class PoiUtil {
      * 约定格式要求：第一行为标题行，之后为数据行
      * 返回结构为Map结构的List集合：每行的key=第一行的标题，value=单元格值，统一为字符串，根据需要自行转换数据类型
      * </pre>
+     *
      * @param excelFile
      * @param sheetName
      * @return Map 包含单元格数据内容的Map对象
@@ -67,6 +71,7 @@ public class PoiUtil {
      * 约定格式要求：第readFromRowNum行为标题行，之后为数据行
      * 返回结构为Map结构的List集合：每行的key=第一行的标题，value=单元格值，统一为字符串，根据需要自行转换数据类型
      * </pre>
+     *
      * @return Map 包含单元格数据内容的Map对象
      */
     public static List<Map<String, String>> readExcelContent(MultipartFile excelFile, String sheetName, Integer readFromRowNum) {
@@ -79,6 +84,7 @@ public class PoiUtil {
      * 约定格式要求：第readFromRowNum行为标题行，之后为数据行
      * 返回结构为Map结构的List集合：每行的key=第一行的标题，value=单元格值，统一为字符串，根据需要自行转换数据类型
      * </pre>
+     *
      * @return Map 包含单元格数据内容的Map对象
      */
     public static List<Map<String, String>> readExcelContent(MultipartFile excelFile, Integer sheetIndex, Integer readFromRowNum) {
@@ -92,15 +98,15 @@ public class PoiUtil {
      * 返回结构为Map结构的List集合：每行的key=第(titleStartRowNum+1)行的标题，
      * value=单元格值，统一为字符串，根据需要自行转换数据类型
      * </pre>
-     * 
-     * @param excelFile                  表格名称
-     * @param sheetName                  读取工作标签项名称
-     * @param readFromRowNum             以readFromRowNum作为标题开始读取
-     * @param readFromColNum             从readFromColNum列开始读取
+     *
+     * @param excelFile      表格名称
+     * @param sheetName      读取工作标签项名称
+     * @param readFromRowNum 以readFromRowNum作为标题开始读取
+     * @param readFromColNum 从readFromColNum列开始读取
      * @return Map                       包含单元格数据内容的Map对象
      */
     public static List<Map<String, String>> readExcelContent(MultipartFile excelFile, Integer sheetIndex, String sheetName, Integer readFromRowNum,
-            Integer readFromColNum) {
+                                                             Integer readFromColNum) {
         List<Map<String, String>> rows = Lists.newArrayList();
         if (excelFile.isEmpty()) {
             return rows;
@@ -195,7 +201,7 @@ public class PoiUtil {
      * 读取Excel数据内容
      * 约定格式要求：第一行为标题行，之后为数据行
      * 返回结构为Map结构的List集合：每行的key=第一行的标题，value=单元格值，统一为字符串，根据需要自行转换数据类型
-     * 
+     *
      * @return Map 包含单元格数据内容的Map对象
      */
     public static List<Map<String, String>> readExcelContent(InputStream is, String excelName, String sheetName) {
@@ -265,7 +271,7 @@ public class PoiUtil {
 
     /**
      * 根据HSSFCell类型设置数据
-     * 
+     *
      * @param cell
      * @return
      */
@@ -274,35 +280,35 @@ public class PoiUtil {
         if (cell != null) {
             // 判断当前Cell的Type
             switch (cell.getCellType()) {
-            // 如果当前Cell的Type为NUMERIC
-            case Cell.CELL_TYPE_NUMERIC:
-            case Cell.CELL_TYPE_FORMULA: {
-                // 判断当前的cell是否为Date
-                if (HSSFDateUtil.isCellDateFormatted(cell)) {
-                    // 如果是Date类型则，转化为Data格式
+                // 如果当前Cell的Type为NUMERIC
+                case Cell.CELL_TYPE_NUMERIC:
+                case Cell.CELL_TYPE_FORMULA: {
+                    // 判断当前的cell是否为Date
+                    if (HSSFDateUtil.isCellDateFormatted(cell)) {
+                        // 如果是Date类型则，转化为Data格式
 
-                    //方法1：这样子的data格式是带时分秒的：2011-10-12 0:00:00
-                    //cellvalue = cell.getDateCellValue().toLocaleString();
+                        //方法1：这样子的data格式是带时分秒的：2011-10-12 0:00:00
+                        //cellvalue = cell.getDateCellValue().toLocaleString();
 
-                    //方法2：这样子的data格式是不带带时分秒的：2011-10-12
-                    Date date = cell.getDateCellValue();
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                    cellvalue = sdf.format(date);
+                        //方法2：这样子的data格式是不带带时分秒的：2011-10-12
+                        Date date = cell.getDateCellValue();
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        cellvalue = sdf.format(date);
 
+                    }
+                    // 如果是纯数字
+                    else {
+                        // 取得当前Cell的数值
+                        DecimalFormat df = new DecimalFormat("#.####");
+                        cellvalue = df.format(cell.getNumericCellValue());
+                    }
+                    break;
                 }
-                // 如果是纯数字
-                else {
-                    // 取得当前Cell的数值
-                    DecimalFormat df = new DecimalFormat("#.####");
-                    cellvalue = df.format(cell.getNumericCellValue());
-                }
-                break;
-            }
-            // 如果当前Cell的Type为STRIN
-            case Cell.CELL_TYPE_STRING:
-                // 取得当前的Cell字符串
-                cellvalue = cell.getRichStringCellValue().getString();
-                break;
+                // 如果当前Cell的Type为STRIN
+                case Cell.CELL_TYPE_STRING:
+                    // 取得当前的Cell字符串
+                    cellvalue = cell.getRichStringCellValue().getString();
+                    break;
             }
         }
         if (cellvalue == null) {
@@ -317,9 +323,9 @@ public class PoiUtil {
      * <pre>
      *   读取Excel指定列内容
      * </pre>
-     * 
-     * @param readFromRowNum             以readFromRowNum作为标题开始读取
-     * @param specifyColNum             从readFromColNum列开始读取
+     *
+     * @param readFromRowNum 以readFromRowNum作为标题开始读取
+     * @param specifyColNum  从readFromColNum列开始读取
      * @return Map                       包含单元格数据内容的Map对象
      */
     public static List<Map<String, String>> readExcelSpecifyColNum(InputStream is, Integer sheetIndex, Integer readFromRowNum, Integer specifyColNum) {
@@ -403,8 +409,94 @@ public class PoiUtil {
         return rows;
     }
 
-    public static void main(String[] args) {
 
+    /**
+     * 返回缺陷图片信息工作簿
+     *
+     * @return
+     */
+    public static Workbook printFaultInfo(List<Fault> faultList) {
+        HSSFWorkbook wb = new HSSFWorkbook();
+        HSSFSheet sheet = wb.createSheet("缺陷表格");
+
+        HSSFCellStyle style = wb.createCellStyle();
+        style.setAlignment(HSSFCellStyle.VERTICAL_CENTER);
+        style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+
+        Row titleRow = sheet.createRow(0);
+        Cell titleCell0 = titleRow.createCell(0);
+        titleCell0.setCellStyle(style);
+        titleCell0.setCellValue("序号");
+
+        Cell titleCell1 = titleRow.createCell(1);
+        titleCell1.setCellStyle(style);
+        titleCell1.setCellValue("线路");
+
+        Cell titleCell2 = titleRow.createCell(2);
+        titleCell2.setCellStyle(style);
+        titleCell2.setCellValue("车号");
+
+        Cell titleCell3 = titleRow.createCell(3);
+        titleCell3.setCellStyle(style);
+        titleCell3.setCellValue("弓位置");
+
+        Cell titleCell4 = titleRow.createCell(4);
+        titleCell4.setCellStyle(style);
+        titleCell4.setCellValue("缺陷类型");
+
+        Cell titleCell5 = titleRow.createCell(5);
+        titleCell5.setCellStyle(style);
+        titleCell5.setCellValue("缺陷级别");
+
+        Cell titleCell6 = titleRow.createCell(6);
+        titleCell6.setCellStyle(style);
+        titleCell6.setCellValue("缺陷信息");
+
+        Cell titleCell7 = titleRow.createCell(7);
+        titleCell7.setCellStyle(style);
+        titleCell7.setCellValue("创建时间");
+
+
+        for (int i = 0; i < faultList.size(); i++) {
+            Fault fault = faultList.get(i);
+            Row row = sheet.createRow(i + 1);
+
+            Cell cell0 = row.createCell(0);
+            cell0.setCellStyle(style);
+            cell0.setCellValue(i + 1);
+
+            Cell cell1 = row.createCell(1);
+            cell1.setCellStyle(style);
+            cell1.setCellValue(fault.getLine());
+
+            Cell cell2 = row.createCell(2);
+            cell2.setCellStyle(style);
+            cell2.setCellValue(fault.getCarNumber());
+
+            Cell cell3 = row.createCell(3);
+            cell3.setCellStyle(style);
+            cell3.setCellValue(fault.getBowPosition());
+
+            Cell cell4 = row.createCell(4);
+            cell4.setCellStyle(style);
+            cell4.setCellValue(fault.getDic().getNodeName());
+
+            Cell cell5 = row.createCell(5);
+            cell5.setCellStyle(style);
+            cell5.setCellValue(fault.getInterval());
+
+            Cell cell6 = row.createCell(6);
+            cell6.setCellStyle(style);
+            cell6.setCellValue(fault.getFaultInfo());
+
+            Cell cell7 = row.createCell(7);
+            cell7.setCellStyle(style);
+            cell7.setCellValue(DateUtil.formatDate(fault.getCreatedAt(), DateUtil.DEFAULT_TIME_FORMAT));
+        }
+
+        for (int j = 0; j < 8; j++) {
+            sheet.autoSizeColumn(j, true);
+        }
+        return wb;
     }
-
 }
