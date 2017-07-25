@@ -7,7 +7,6 @@ import com.ducetech.framework.context.SpringContextHolder;
 import com.ducetech.framework.support.service.DynamicConfigService;
 import com.ducetech.framework.util.ExtStringUtil;
 import com.ducetech.framework.util.NumberUtil;
-import com.ducetech.framework.web.view.OperationResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -39,8 +38,8 @@ public class StartupListener implements ServletContextListener {
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        LOG.debug("Invoke contextDestroyed contextDestroyed");
-        if (uploadImageServer != null) {
+        LOG.info("Invoke contextDestroyed contextDestroyed");
+        if (null != uploadImageServer) {
             uploadImageServer.close();
         }
         exec.shutdown();
@@ -57,12 +56,14 @@ public class StartupListener implements ServletContextListener {
         private PrintWriter pw = null;
         //FaultService
         private FaultService faultService;
+        private boolean isActive = false;
 
         public UploadImageServer() {
             ApplicationContext applicationContext = SpringContextHolder.getApplicationContext();
             redisTemplate = (RedisTemplate<String, Object>) applicationContext.getBean("redisTemplate");
             dynamicConfigService = (DynamicConfigService) applicationContext.getBean("dynamicConfigService");
             this.port = Integer.valueOf(dynamicConfigService.getString("tcp.port", "9100"));
+            this.isActive = true;
         }
 
         @Override
@@ -73,7 +74,7 @@ public class StartupListener implements ServletContextListener {
                 LOG.error(e.getMessage(), e);
             }
             if (null != ss) {
-                while (true) {
+                while (isActive) {
                     try {
                         socket = ss.accept();
                         bis = new BufferedInputStream(socket.getInputStream());
@@ -110,13 +111,48 @@ public class StartupListener implements ServletContextListener {
                     } catch (Exception e) {
                         LOG.error(e.getMessage(), e);
                     } finally {
-                        close();
+                        try {
+                            if (null != bos) {
+                                bos.close();
+                            }
+                        } catch (Exception e) {
+                            LOG.error(e.getMessage(), e);
+                        }
+                        try {
+                            if (null != bis) {
+                                bis.close();
+                            }
+                        } catch (Exception e) {
+                            LOG.error(e.getMessage(), e);
+                        }
+                        try {
+                            if (null != socket) {
+                                socket.close();
+                            }
+                        } catch (Exception e) {
+                            LOG.error(e.getMessage(), e);
+                        }
+                        try {
+                            if (null != pw) {
+                                pw.close();
+                            }
+                        } catch (Exception e) {
+                            LOG.error(e.getMessage(), e);
+                        }
                     }
                 }
             }
         }
 
-        public void close() {
+        private void close() {
+            isActive = false;
+            try {
+                if (null != ss) {
+                    ss.close();
+                }
+            } catch (Exception e) {
+                LOG.error(e.getMessage(), e);
+            }
             try {
                 if (null != bos) {
                     bos.close();

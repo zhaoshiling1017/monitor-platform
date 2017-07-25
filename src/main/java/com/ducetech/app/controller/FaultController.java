@@ -7,6 +7,7 @@ import com.ducetech.app.service.FaultService;
 import com.ducetech.framework.controller.BaseController;
 import com.ducetech.framework.model.BaseQuery;
 import com.ducetech.framework.model.PagerRS;
+import com.ducetech.framework.util.DateUtil;
 import com.ducetech.framework.web.view.OperationResult;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.usermodel.Cell;
@@ -120,7 +121,6 @@ public class FaultController extends BaseController {
 
         List<Fault> faultList = faultService.getFaults(faultVO);
 
-        DateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:dd");
         for (int i = 0; i < faultList.size(); i++) {
             Fault fault = faultList.get(i);
             Row row = sheet.createRow(i + 1);
@@ -155,7 +155,7 @@ public class FaultController extends BaseController {
 
             Cell cell7 = row.createCell(7);
             cell7.setCellStyle(style);
-            cell7.setCellValue(dateformat.format(fault.getCreatedAt()));
+            cell7.setCellValue(DateUtil.formatDate(fault.getCreatedAt(), DateUtil.DEFAULT_TIME_FORMAT));
         }
 
         for (int j = 0; j < 8; j++) {
