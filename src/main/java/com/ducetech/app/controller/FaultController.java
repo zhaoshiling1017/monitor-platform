@@ -7,6 +7,7 @@ import com.ducetech.app.service.FaultService;
 import com.ducetech.framework.controller.BaseController;
 import com.ducetech.framework.model.BaseQuery;
 import com.ducetech.framework.model.PagerRS;
+import com.ducetech.framework.support.service.DynamicConfigService;
 import com.ducetech.framework.util.DateUtil;
 import com.ducetech.framework.util.PoiUtil;
 import com.ducetech.framework.web.view.OperationResult;
@@ -43,6 +44,8 @@ public class FaultController extends BaseController {
     private FaultService faultService;
     @Autowired
     private DictionaryService dictionaryService;
+    @Autowired
+    private DynamicConfigService dynamicConfigService;
 
     private static final Logger LOG = LoggerFactory.getLogger(FaultController.class);
 
@@ -86,7 +89,7 @@ public class FaultController extends BaseController {
 
         OutputStream os = null;
         try {
-            String fileName = "缺陷图片信息列表.xls";
+            String fileName = dynamicConfigService.getString("fault_info_excl_name");
             os = response.getOutputStream();
             response.setContentType("application/vnd.ms-excel");
             response.setHeader("Content-disposition", "attachment;filename=" + URLEncoder.encode(fileName, "utf-8"));
