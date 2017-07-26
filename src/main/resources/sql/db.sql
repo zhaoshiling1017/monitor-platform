@@ -144,7 +144,7 @@ CREATE TABLE `t_fault` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `t_fault`(`line`, `car_number`,  `bow_position`, `interval`, `env_temperature`, `eq_temperature`, `type`, `level`, `image_path`, `fault_info`, `created_at`, `device_num`, `is_deleted`) values(
-    '6号线', '1号车', '1001-1002', '1-2', '28', '38', '000001', '1级', '/home/lenzhao/tmp/play.jpg', '测试数据', now(), '1', 0
+    '6号线', '1号车', '1001-1002', '1-2', '28', '38', '000001', '1级', '/data/image/fault/play.jpg', '测试数据', now(), '1', 0
 );
 
 
