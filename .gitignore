@@ -6,4 +6,4 @@ target/
 monitor-platform.iml
 dump.rdb
 src/main/resources/jdbc.properties
-rc/main/resources/logback.xml
+src/main/resources/logback.xml
