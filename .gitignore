@@ -5,4 +5,5 @@ target/
 .idea
 monitor-platform.iml
 dump.rdb
-.gitignore~
+src/main/resources/jdbc.properties
+rc/main/resources/logback.xml

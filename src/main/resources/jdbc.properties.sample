@@ -2,6 +2,7 @@ jdbc.driverClassName=com.mysql.jdbc.Driver
 jdbc.url=jdbc:mysql://192.168.4.21:1234/monitor?useUnicode=true&characterEncoding=utf-8
 jdbc.username=dc
 jdbc.password=ducetech
+#jdbc.password=root
 
 
 druid.initialSize=1
